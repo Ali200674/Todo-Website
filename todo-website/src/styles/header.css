@@ -1,0 +1,45 @@
+:root {
+  --text-color: #f2e7f9;
+  --primary-color: #bf89e0;
+  --secondary-color: #7b215b;
+  --accent-color: #d45e89;
+}
+
+body {
+  background-color: #110719;
+}
+
+header {
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "wdth" 100,
+    "GRAD" 0,
+    "ROND" 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-color);
+
+  .header-div {
+    font-size: 2.4rem;
+
+    h1 {
+      margin-bottom: 10px;
+    }
+  }
+
+  .tagline-div p {
+    font-size: 1.4rem;
+
+    margin-top: 0.5rem;
+  }
+}
