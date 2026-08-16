@@ -1,5 +1,6 @@
 import "../styles/searchbar.css";
 import searchbar from "../assets/search-bar-logo.svg";
+import Filters from "./Filters";
 
 function SearchBar() {
   return (
@@ -11,6 +12,7 @@ function SearchBar() {
         </div>
         {/* Buttons near the input field */}
         <button className="filters-task">Filters</button>
+        {/* <Filters /> */}
         <button className="create-task">+ Create Task</button>
       </div>
     </>
