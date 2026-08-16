@@ -1,7 +1,14 @@
+import "../styles/searchbar.css";
+import searchbar from "../assets/search-bar-logo.svg";
+
 function SearchBar() {
   return (
     <>
-      <div></div>
+      <div className="search-bar-div">
+        <div className="search-bar">
+          <input type="text" placeholder="Search for task..." />
+        </div>
+      </div>
     </>
   );
 }
