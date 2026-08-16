@@ -1,3 +1,4 @@
+/* Variables for colors */
 :root {
   --text-color: #f2e7f9;
   --primary-color: #bf89e0;
@@ -28,6 +29,7 @@ header {
   justify-content: center;
 }
 
+/* For the header that holds the h1 title */
 .header-div {
   font-size: 2.4rem;
 
@@ -38,6 +40,7 @@ header {
   }
 }
 
+/* For the p under the h1 title */
 .tagline-div p {
   font-size: 1.4rem;
 
