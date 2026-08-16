@@ -8,6 +8,8 @@ function SearchBar() {
         <div className="search-bar">
           <input type="text" placeholder="Search for task..." />
         </div>
+        <button className="filters-task">Filters</button>
+        <button className="create-task">Create Task</button>
       </div>
     </>
   );
