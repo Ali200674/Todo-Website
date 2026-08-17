@@ -4,6 +4,8 @@ import Filters from "./Filters";
 import { useState } from "react";
 
 function SearchBar() {
+  const [showModal, setShowModal] = useState(true);
+
   return (
     <>
       <div className="search-bar-div">
@@ -12,8 +14,14 @@ function SearchBar() {
           <input type="text" placeholder="Search for task..." />
         </div>
         {/* Buttons near the input field */}
-        <button className="filters-task">Filters</button>
-        <Filters />
+        <button
+          className="filters-task"
+          onClick={() => setShowModal((p) => !p)}
+        >
+          Filters
+        </button>
+
+        <Filters setModal={setShowModal} modalVar={showModal} />
         <button className="create-task">+ Create Task</button>
       </div>
     </>
