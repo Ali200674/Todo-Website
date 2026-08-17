@@ -4,7 +4,7 @@ import Filters from "./Filters";
 import { useState } from "react";
 
 function SearchBar() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>

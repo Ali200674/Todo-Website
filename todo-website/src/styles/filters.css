@@ -16,6 +16,12 @@
 }
 
 .filter-options-div {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
   position: fixed;
   top: 50%;
   left: 50%;
@@ -24,11 +30,15 @@
 
   padding: 2rem;
 
-  background-color: rgba(202, 17, 17, 0.5);
+  background-color: rgba(119, 17, 202, 0.287);
 
   color: white;
 
   z-index: 2;
+}
+
+.title {
+  font-size: 1.8rem;
 }
 
 .exit-model-button {
@@ -37,5 +47,41 @@
   top: 0;
   right: 0;
 
-  padding: 1rem;
+  padding: 1.2rem;
+}
+
+.checkbox-div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+input[type="checkbox"] {
+  height: 30px;
+  width: 30px;
+
+  appearance: none;
+  background-color: transparent;
+
+  border: 1px solid rgb(163, 18, 163);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "check";
+
+  font-family: "Material Symbols Outlined";
+
+  color: white;
+
+  font-size: 1.5rem;
+}
+
+.exit-model-button {
+  cursor: pointer;
 }
