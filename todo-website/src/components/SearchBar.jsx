@@ -1,10 +1,12 @@
 import "../styles/searchbar.css";
 import searchbar from "../assets/search-bar-logo.svg";
-import Filters from "./Filters";
+import FilterModal from "./FiltersModal.jsx";
 import { useState } from "react";
+import ButtonModal from "./ButtonModal.jsx";
 
 function SearchBar() {
-  const [showModal, setShowModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showButtonModal, setShowButtonModal] = useState(false);
 
   return (
     <>
@@ -16,13 +18,19 @@ function SearchBar() {
         {/* Buttons near the input field */}
         <button
           className="filters-task"
-          onClick={() => setShowModal((p) => !p)}
+          onClick={() => setShowFilterModal((p) => !p)}
         >
           Filters
         </button>
 
-        <Filters setModal={setShowModal} modalVar={showModal} />
-        <button className="create-task">+ Create Task</button>
+        <FilterModal setModal={setShowFilterModal} modalVar={showFilterModal} />
+        <button
+          className="create-task"
+          onClick={() => setShowButtonModal((p) => !p)}
+        >
+          + Create Task
+        </button>
+        <ButtonModal setModal={setShowButtonModal} modalVar={showButtonModal} />
       </div>
     </>
   );

@@ -37,6 +37,23 @@
   z-index: 2;
 }
 
+.modal-options {
+  display: flex;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 50px;
+}
+
+.status-div {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .title {
   font-size: 1.8rem;
 }
@@ -84,4 +101,16 @@ input[type="checkbox"]:checked::before {
 
 .exit-model-button {
   cursor: pointer;
+}
+
+.priority-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.priority-heading,
+.status-heading {
+  align-self: center;
+
+  font-size: 1.2rem;
 }
