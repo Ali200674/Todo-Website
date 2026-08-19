@@ -11,7 +11,7 @@
 }
 
 /* For the search bar input field */
-.search-bar input {
+.search-bar input[type="text"] {
   padding: 1.2rem;
 
   outline: none;

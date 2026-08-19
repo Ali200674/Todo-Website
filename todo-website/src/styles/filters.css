@@ -1,5 +1,5 @@
 /* Filter Modal */
-.model-background {
+.modal-background {
   position: fixed;
 
   top: 50%;
@@ -15,7 +15,8 @@
   z-index: 1;
 }
 
-.filter-options-div {
+.filter-options-div,
+.create-task-div {
   display: flex;
   flex-direction: column;
 
@@ -113,4 +114,39 @@ input[type="checkbox"]:checked::before {
   align-self: center;
 
   font-size: 1.2rem;
+}
+
+.exit-model-button {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  padding: 1.2rem;
+}
+
+.input-field input {
+  padding: 1.2rem;
+
+  outline: none;
+
+  background-color: transparent;
+
+  border: 1px solid rgb(202, 73, 202);
+
+  width: 25rem;
+
+  color: var(--text-color);
+
+  font-size: 1.2rem;
+
+  border-radius: 2rem;
+}
+
+.input-field input:hover {
+  border: 1px solid rgba(128, 0, 128, 0.569);
+}
+
+.submit-form form {
+  margin-top: 2rem;
 }

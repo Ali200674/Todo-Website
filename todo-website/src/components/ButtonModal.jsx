@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import "../styles/buttonmodal.css";
+import "../styles/filters.css";
 import close from "../assets/close.svg";
 
 function ButtonModal({ modalVar, setModal }) {
@@ -11,13 +11,18 @@ function ButtonModal({ modalVar, setModal }) {
     <div className="modal-background">
       <div className="create-task-div">
         <div className="title">
-          <h3>Create Task</h3>
+          <h3>Task Details</h3>
         </div>
         <div className="exit-model-button">
           <img src={close} onClick={() => setModal((p) => !p)} />
         </div>
         <div className="input-field">
           <input type="text" placeholder="Task Name..." />
+        </div>
+        <div className="submit-form">
+          <form>
+            <button>Create Task</button>
+          </form>
         </div>
       </div>
     </div>,

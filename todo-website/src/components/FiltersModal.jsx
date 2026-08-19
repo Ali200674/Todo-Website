@@ -8,7 +8,7 @@ function FilterModal({ modalVar, setModal }) {
   }
 
   return createPortal(
-    <div className="model-background">
+    <div className="modal-background">
       <div className="filter-options-div">
         <div className="title">
           <h3>Filter Options</h3>
