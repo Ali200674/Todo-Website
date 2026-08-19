@@ -4,14 +4,19 @@ import FilterModal from "./FiltersModal.jsx";
 import { useState } from "react";
 import ButtonModal from "./ButtonModal.jsx";
 
+/**
+ * This component is designed to be a search bar or filter for the user's tasks.
+ *
+ * @returns
+ */
 function SearchBar() {
+  // Two useStates. One for the filters button and the other for the create task button
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [showButtonModal, setShowButtonModal] = useState(false);
 
   return (
     <>
       <div className="search-bar-div">
-        {/* A div for the input field as the search bar */}
         <div className="search-bar">
           <input type="text" placeholder="Search for task..." />
         </div>
@@ -22,7 +27,6 @@ function SearchBar() {
         >
           Filters
         </button>
-
         <FilterModal setModal={setShowFilterModal} modalVar={showFilterModal} />
         <button
           className="create-task"

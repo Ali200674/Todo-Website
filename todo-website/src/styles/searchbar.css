@@ -57,14 +57,15 @@
   font-size: 1.2rem;
 }
 
-.filters-task:hover {
-  border: 2px solid #d45e899c;
-}
-
+/* For the button in filters-task */
 .search-bar-div .filters-task {
   border: 2px solid var(--accent-color);
 }
 
+.filters-task:hover {
+  border: 2px solid #d45e899c;
+}
+/* For the button in create-task */
 .search-bar-div .create-task {
   border: 2px solid #bf89e0;
 }

@@ -1,4 +1,130 @@
-/* Filter Modal */
+/* For the options or filters in the FiltersModal.jsx */
+.modal-options {
+  display: flex;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 50px;
+
+  cursor: pointer;
+}
+
+.priority-heading,
+.status-heading {
+  align-self: center;
+
+  font-size: 1.2rem;
+}
+
+/* ButtonModal.jsx */
+.submit-form form {
+  margin-top: 2rem;
+}
+
+.priority-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-form button {
+  padding: 1rem;
+
+  border-radius: 1rem;
+
+  outline: none;
+
+  cursor: pointer;
+
+  color: var(--text-color);
+
+  background-color: transparent;
+
+  font-size: 1.2rem;
+
+  border: 2px solid #bf89e08c;
+}
+
+.input-field input:hover {
+  border: 1px solid rgba(128, 0, 128, 0.569);
+}
+
+.input-field input {
+  padding: 1.2rem;
+
+  outline: none;
+
+  background-color: transparent;
+
+  border: 1px solid rgb(202, 73, 202);
+
+  width: 25rem;
+
+  color: var(--text-color);
+
+  font-size: 1.2rem;
+
+  border-radius: 2rem;
+}
+
+/* FilterModal.jsx */
+input[type="checkbox"]:checked::before {
+  content: "check";
+
+  font-family: "Material Symbols Outlined";
+
+  color: white;
+
+  font-size: 1.5rem;
+}
+
+input[type="checkbox"] {
+  height: 30px;
+  width: 30px;
+
+  appearance: none;
+  background-color: transparent;
+
+  border: 1px solid rgb(163, 18, 163);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox-div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.status-div {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* BOTH MODALS */
+.exit-modal-button {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  padding: 1.2rem;
+
+  cursor: pointer;
+}
+
+.title {
+  font-size: 1.8rem;
+}
+
+/* Modal background */
 .modal-background {
   position: fixed;
 
@@ -36,135 +162,4 @@
   color: white;
 
   z-index: 2;
-}
-
-.modal-options {
-  display: flex;
-
-  justify-content: center;
-  align-items: flex-start;
-
-  gap: 50px;
-}
-
-.status-div {
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.title {
-  font-size: 1.8rem;
-}
-
-.exit-model-button {
-  position: absolute;
-
-  top: 0;
-  right: 0;
-
-  padding: 1.2rem;
-}
-
-.checkbox-div {
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-}
-
-input[type="checkbox"] {
-  height: 30px;
-  width: 30px;
-
-  appearance: none;
-  background-color: transparent;
-
-  border: 1px solid rgb(163, 18, 163);
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-input[type="checkbox"]:checked::before {
-  content: "check";
-
-  font-family: "Material Symbols Outlined";
-
-  color: white;
-
-  font-size: 1.5rem;
-}
-
-.exit-model-button {
-  cursor: pointer;
-}
-
-.priority-div {
-  display: flex;
-  flex-direction: column;
-}
-
-.priority-heading,
-.status-heading {
-  align-self: center;
-
-  font-size: 1.2rem;
-}
-
-.exit-model-button {
-  position: absolute;
-
-  top: 0;
-  right: 0;
-
-  padding: 1.2rem;
-}
-
-.input-field input {
-  padding: 1.2rem;
-
-  outline: none;
-
-  background-color: transparent;
-
-  border: 1px solid rgb(202, 73, 202);
-
-  width: 25rem;
-
-  color: var(--text-color);
-
-  font-size: 1.2rem;
-
-  border-radius: 2rem;
-}
-
-.input-field input:hover {
-  border: 1px solid rgba(128, 0, 128, 0.569);
-}
-
-.submit-form form {
-  margin-top: 2rem;
-}
-
-.submit-form button {
-  padding: 1rem;
-
-  border-radius: 1rem;
-
-  outline: none;
-
-  cursor: pointer;
-
-  color: var(--text-color);
-
-  background-color: transparent;
-
-  font-size: 1.2rem;
-
-  border: 2px solid #bf89e08c;
 }
