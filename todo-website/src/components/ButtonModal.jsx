@@ -24,15 +24,42 @@ function ButtonModal({ modalVar, setModal }) {
     <div className="modal-background">
       <div className="create-task-div">
         <div className="title">
-          <h3>Task Details</h3>
+          <h2>Task Details</h2>
         </div>
 
         <div className="exit-modal-button">
           <img src={close} onClick={() => setModal((p) => !p)} />
         </div>
 
-        <div className="input-field">
-          <input type="text" placeholder="Task Name..." />
+        <div className="modal-options">
+          <div className="input-field-div">
+            <div className="input-field-heading">
+              <h3>Task Name</h3>
+            </div>
+            <div className="input-field">
+              <input type="text" placeholder="Task Name..." />
+            </div>
+          </div>
+
+          {/* <div className="priority-type-div">
+            <div className="priority-heading">
+              <h3>Prioritys</h3>
+            </div>
+            <div className="low-priority checkbox-div">
+              <input type="checkbox" name="priority" value="low" />
+              <span>Low Priotity</span>
+            </div>
+
+            <div className="middle-priority checkbox-div">
+              <input type="checkbox" name="priority" value="medium" />
+              <span>Medium Priority</span>
+            </div>
+
+            <div className="high-priority checkbox-div">
+              <input type="checkbox" name="priority" value="high" />
+              <span>High Priority</span>
+            </div>
+          </div> */}
         </div>
 
         <div className="submit-form">

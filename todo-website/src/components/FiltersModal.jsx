@@ -24,7 +24,7 @@ function FilterModal({ modalVar, setModal }) {
     <div className="modal-background">
       <div className="filter-options-div">
         <div className="title">
-          <h3>Filter Options</h3>
+          <h2>Filter Options</h2>
         </div>
 
         <div className="exit-modal-button">
