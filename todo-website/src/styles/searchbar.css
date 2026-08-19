@@ -11,7 +11,7 @@
 }
 
 /* For the search bar input field */
-.search-bar input[type="text"] {
+input[type="text"] {
   padding: 1.2rem;
 
   outline: none;
@@ -35,12 +35,13 @@
   background-size: 1.5rem;
 }
 
-.search-bar input:hover {
+input:hover {
   border: 1px solid rgba(128, 0, 128, 0.569);
 }
 
-.search-bar-div button {
-  padding: 0 20px;
+.filters-task,
+.create-task {
+  padding: 1rem;
 
   border-radius: 1rem;
 
@@ -58,7 +59,7 @@
 }
 
 /* For the button in filters-task */
-.search-bar-div .filters-task {
+.filters-task {
   border: 2px solid var(--accent-color);
 }
 
@@ -66,10 +67,10 @@
   border: 2px solid #d45e899c;
 }
 /* For the button in create-task */
-.search-bar-div .create-task {
+.create-task {
   border: 2px solid #bf89e0;
 }
 
-.search-bar-div .create-task:hover {
+.create-task:hover {
   border: 2px solid #bf89e08c;
 }

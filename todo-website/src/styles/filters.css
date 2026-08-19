@@ -44,6 +44,10 @@ h3 {
   border: 2px solid #bf89e08c;
 }
 
+.submit-form button:hover {
+  border: 2px solid #805c968c;
+}
+
 .input-field input:hover {
   border: 1px solid rgba(128, 0, 128, 0.569);
 }
