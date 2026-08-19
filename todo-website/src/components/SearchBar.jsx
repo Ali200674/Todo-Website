@@ -1,4 +1,4 @@
-import "../styles/searchbar.css";
+import "../styles/SearchBar.css";
 import searchbar from "../assets/search-bar-logo.svg";
 import FilterModal from "./FiltersModal.jsx";
 import { useState } from "react";

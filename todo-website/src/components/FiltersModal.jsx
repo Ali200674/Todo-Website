@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import "../styles/filters.css";
+import "../styles/Filters.css";
 import close from "../assets/close.svg";
 
 function FilterModal({ modalVar, setModal }) {

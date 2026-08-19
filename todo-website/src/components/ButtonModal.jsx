@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import "../styles/filters.css";
+import "../styles/Filters.css";
 import close from "../assets/close.svg";
 
 function ButtonModal({ modalVar, setModal }) {
@@ -21,7 +21,7 @@ function ButtonModal({ modalVar, setModal }) {
         </div>
         <div className="submit-form">
           <form>
-            <button>Create Task</button>
+            <button>Add Task</button>
           </form>
         </div>
       </div>

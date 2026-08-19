@@ -39,7 +39,7 @@
   border: 1px solid rgba(128, 0, 128, 0.569);
 }
 
-button {
+.search-bar-div button {
   padding: 0 20px;
 
   border-radius: 1rem;
@@ -61,14 +61,14 @@ button {
   border: 2px solid #d45e899c;
 }
 
-.filters-task {
+.search-bar-div .filters-task {
   border: 2px solid var(--accent-color);
 }
 
-.create-task {
+.search-bar-div .create-task {
   border: 2px solid #bf89e0;
 }
 
-.create-task:hover {
+.search-bar-div .create-task:hover {
   border: 2px solid #bf89e08c;
 }

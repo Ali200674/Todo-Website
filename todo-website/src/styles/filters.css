@@ -150,3 +150,21 @@ input[type="checkbox"]:checked::before {
 .submit-form form {
   margin-top: 2rem;
 }
+
+.submit-form button {
+  padding: 1rem;
+
+  border-radius: 1rem;
+
+  outline: none;
+
+  cursor: pointer;
+
+  color: var(--text-color);
+
+  background-color: transparent;
+
+  font-size: 1.2rem;
+
+  border: 2px solid #bf89e08c;
+}
