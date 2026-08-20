@@ -8,14 +8,15 @@ import { useState } from "react";
 
 function App() {
   const [tasks, addNewTask] = useState([]);
+  const [searchFilter, setSearchFilter] = useState("");
 
   return (
     <>
       <Header />
 
-      <TaskToolBar addTask={addNewTask} />
+      <TaskToolBar addTask={addNewTask} setSearchFilter={setSearchFilter} />
 
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} searchFilter={searchFilter} />
     </>
   );
 }

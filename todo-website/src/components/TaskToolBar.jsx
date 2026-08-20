@@ -8,14 +8,14 @@ import "../styles/SearchBar.css";
 
 import searchbar from "../assets/search-bar-logo.svg";
 
-function TaskToolBar({ addTask }) {
+function TaskToolBar({ addTask, setSearchFilter }) {
   // Two useStates. One for the filters button and the other for the create task button
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [showButtonModal, setShowButtonModal] = useState(false);
 
   return (
     <div className="search-bar-div">
-      <SearchBar />
+      <SearchBar setSearchFilter={setSearchFilter} />
 
       {/* Buttons near the input field */}
       <button

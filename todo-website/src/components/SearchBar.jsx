@@ -1,12 +1,25 @@
+import { useRef } from "react";
+
 /**
  * This component is designed to be a search bar or filter for the user's tasks.
  *
  * @returns
  */
-function SearchBar() {
+function SearchBar({ setSearchFilter }) {
+  const userInput = useRef(null);
+
+  function setTaskFilter() {
+    setSearchFilter(userInput.current.value);
+  }
+
   return (
     <div className="search-bar">
-      <input type="text" placeholder="Search for task..." />
+      <input
+        type="text"
+        placeholder="Search for task..."
+        ref={userInput}
+        onChange={setTaskFilter}
+      />
     </div>
   );
 }

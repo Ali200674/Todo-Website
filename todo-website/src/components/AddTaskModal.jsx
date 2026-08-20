@@ -26,6 +26,7 @@ function ButtonModal({ modalVar, setModal, addTask }) {
   function createNewTask(event) {
     event.preventDefault();
     addTask((p) => [...p, { taskName: inputBarValue.current.value }]);
+    setModal((p) => !p);
   }
 
   return createPortal(
