@@ -11,7 +11,7 @@
 }
 
 /* For the search bar input field */
-input[type="text"] {
+.search-bar-div input[type="text"] {
   padding: 1.2rem;
 
   outline: none;
@@ -63,14 +63,11 @@ input:hover {
   border: 2px solid var(--accent-color);
 }
 
-.filters-task:hover {
+.filters-task:hover,
+.create-task:hover {
   border: 2px solid #d45e899c;
 }
 /* For the button in create-task */
 .create-task {
-  border: 2px solid #bf89e0;
-}
-
-.create-task:hover {
-  border: 2px solid #bf89e08c;
+  border: 2px solid var(--accent-color);
 }

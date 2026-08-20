@@ -8,7 +8,7 @@ import "../styles/SearchBar.css";
 
 import searchbar from "../assets/search-bar-logo.svg";
 
-function TaskToolBar() {
+function TaskToolBar({ addTask }) {
   // Two useStates. One for the filters button and the other for the create task button
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [showButtonModal, setShowButtonModal] = useState(false);
@@ -31,7 +31,11 @@ function TaskToolBar() {
       >
         + Create Task
       </button>
-      <ButtonModal setModal={setShowButtonModal} modalVar={showButtonModal} />
+      <ButtonModal
+        setModal={setShowButtonModal}
+        modalVar={showButtonModal}
+        addTask={addTask}
+      />
     </div>
   );
 }

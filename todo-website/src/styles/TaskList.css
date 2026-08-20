@@ -1,7 +1,8 @@
 .task-list-container {
   display: flex;
+  flex-direction: column;
 
-  justify-content: center;
+  align-items: center;
 
   color: var(--text-color);
 
@@ -9,11 +10,11 @@
 
   margin-top: 1.8rem;
 
-  max-width: 600px;
+  max-width: 1200px;
 
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
 
-  min-height: 500px;
+  min-height: 650px;
 }
 
 /* If there is no tasks, then we say it's empty */

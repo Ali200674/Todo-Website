@@ -4,14 +4,18 @@ import TaskList from "./TaskList";
 
 import TaskToolBar from "./TaskToolBar";
 
+import { useState } from "react";
+
 function App() {
+  const [tasks, addNewTask] = useState([]);
+
   return (
     <>
       <Header />
 
-      <TaskToolBar />
+      <TaskToolBar addTask={addNewTask} />
 
-      <TaskList />
+      <TaskList tasks={tasks} />
     </>
   );
 }

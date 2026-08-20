@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import "../styles/Filters.css";
 import close from "../assets/close.svg";
+import { useRef } from "react";
 
 /**
  * This component is designed to be a modal for creating a task. Accepts two parameters.
@@ -14,10 +15,17 @@ import close from "../assets/close.svg";
  * @param {*} param An object.
  * @returns {JSX.element}
  */
-function ButtonModal({ modalVar, setModal }) {
+function ButtonModal({ modalVar, setModal, addTask }) {
+  const inputBarValue = useRef(null);
+
   // If the modalVar is false, don't open the modal or just return null
   if (!modalVar) {
     return null;
+  }
+
+  function createNewTask(event) {
+    event.preventDefault();
+    addTask((p) => [...p, { taskName: inputBarValue.current.value }]);
   }
 
   return createPortal(
@@ -37,7 +45,11 @@ function ButtonModal({ modalVar, setModal }) {
               <h3>Task Name</h3>
             </div>
             <div className="input-field">
-              <input type="text" placeholder="Task Name..." />
+              <input
+                type="text"
+                placeholder="Task Name..."
+                ref={inputBarValue}
+              />
             </div>
           </div>
 
@@ -64,7 +76,7 @@ function ButtonModal({ modalVar, setModal }) {
 
         <div className="submit-form">
           <form>
-            <button>Add Task</button>
+            <button onClick={createNewTask}>Add Task</button>
           </form>
         </div>
       </div>

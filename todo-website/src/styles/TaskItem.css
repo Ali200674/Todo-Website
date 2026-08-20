@@ -4,10 +4,20 @@
   align-items: center;
   justify-content: space-between;
 
-  min-height: 200px;
+  max-height: 200px;
   height: 100px;
 
-  width: 100%;
+  width: calc(100% - 40px);
+
+  padding: 15px;
+  margin: 0 20px;
+  margin-top: 15px;
+
+  border: 1px solid var(--secondary-color);
+
+  border-radius: 1rem;
+
+  box-sizing: border-box;
 }
 
 .left-side-task {
@@ -19,4 +29,18 @@
   justify-content: center;
 
   align-items: center;
+}
+
+.right-side img {
+  cursor: pointer;
+
+  transition: transform 0.5s ease;
+}
+
+.img-clicked {
+  transform: scaleY(-1);
+}
+
+.task-item-heading h2 {
+  color: var(--text-color);
 }
