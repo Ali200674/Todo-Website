@@ -1,0 +1,22 @@
+.task-item-div {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 200px;
+  height: 100px;
+
+  width: 100%;
+}
+
+.left-side-task {
+  display: flex;
+  flex-direction: row-reverse;
+
+  gap: 20px;
+
+  justify-content: center;
+
+  align-items: center;
+}

@@ -80,13 +80,11 @@ h3 {
 
 /* FilterModal.jsx */
 input[type="checkbox"]:checked::before {
-  content: "check";
+  font-size: 1.5rem;
 
-  font-family: "Material Symbols Outlined";
+  content: "\2713";
 
   color: white;
-
-  font-size: 1.5rem;
 }
 
 input[type="checkbox"] {
@@ -98,7 +96,7 @@ input[type="checkbox"] {
 
   border: 1px solid rgb(163, 18, 163);
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
