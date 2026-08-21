@@ -24,6 +24,8 @@ h3 {
 .priority-div {
   display: flex;
   flex-direction: column;
+
+  gap: 5px;
 }
 
 .submit-form button {
@@ -41,11 +43,15 @@ h3 {
 
   font-size: 1.2rem;
 
-  border: 2px solid var(--accent-color);
+  border: none;
+
+  background-color: var(--accent-color);
+
+  transition: background-color 0.5s ease;
 }
 
 .submit-form button:hover {
-  border: 2px solid #d45e899c;
+  background-color: #a5486a;
 }
 
 .input-field input:hover {
@@ -115,6 +121,8 @@ input[type="checkbox"] {
 
   justify-content: center;
   align-items: flex-start;
+
+  gap: 5px;
 }
 
 /* BOTH MODALS */

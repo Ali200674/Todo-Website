@@ -58,16 +58,24 @@ input:hover {
   font-size: 1.2rem;
 }
 
-/* For the button in filters-task */
-.filters-task {
-  border: 2px solid var(--accent-color);
+/* For the button in filters-task and create task */
+
+.create-task {
+  background-color: var(--accent-color);
+
+  transition: background-color 0.5s ease;
 }
 
-.filters-task:hover,
-.create-task:hover {
-  border: 2px solid #d45e899c;
+.filters-task {
+  background-color: var(--secondary-color);
+
+  transition: background-color 0.5s ease;
 }
-/* For the button in create-task */
-.create-task {
-  border: 2px solid var(--accent-color);
+
+.create-task:hover {
+  background-color: #a5486a;
+}
+
+.filters-task:hover {
+  background-color: #631a49;
 }
