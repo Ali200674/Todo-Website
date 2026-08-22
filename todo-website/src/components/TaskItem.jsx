@@ -46,8 +46,13 @@ function TaskItem({ taskInfo }) {
 
       {/* Div that hold the extra information when the img is clicked. */}
       <div className="extra-information">
-        <div className="task-description">
-          <p>Do Something</p>
+        <div className="task-description-div">
+          <div className="task-description-title">
+            <h3>Description</h3>
+          </div>
+          <div className="task-description">
+            <p>{taskInfo.description}</p>
+          </div>
         </div>
       </div>
     </div>

@@ -19,6 +19,7 @@ import { useRef } from "react";
  */
 function ButtonModal({ modalVar, setModal, addTask }) {
   const inputBarValue = useRef(null);
+  const descriptionValue = useRef(null);
 
   // If the modalVar is false, don't open the modal or just return null
   if (!modalVar) {
@@ -34,7 +35,13 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     event.preventDefault();
 
     // Add the task and close out the modal.
-    addTask((p) => [...p, { taskName: inputBarValue.current.value }]);
+    addTask((p) => [
+      ...p,
+      {
+        taskName: inputBarValue.current.value,
+        description: descriptionValue.current.value,
+      },
+    ]);
     setModal((p) => !p);
   }
 
@@ -88,6 +95,13 @@ function ButtonModal({ modalVar, setModal, addTask }) {
               <span>High Priority</span>
             </div>
           </div>
+        </div>
+
+        <div className="description-div">
+          <div className="description-div-heading">
+            <h3>Task Description (Optional)</h3>
+          </div>
+          <textarea name="" id="" ref={descriptionValue}></textarea>
         </div>
 
         {/* A button that adds a task. */}

@@ -90,14 +90,15 @@
   color: var(--text-color);
 }
 
-.input-field input {
+.input-field input,
+textarea {
   padding: 1.2rem;
 
   outline: none;
 
   background-color: transparent;
 
-  border: 1px solid rgb(239, 228, 242);
+  border: 1px solid rgb(203, 5, 247);
 
   width: 25rem;
 
@@ -108,10 +109,25 @@
   border-radius: 2rem;
 }
 
+textarea {
+  resize: none;
+  width: 550px;
+  height: 200px;
+}
+
 .top-section {
   display: flex;
 
   justify-content: space-between;
 
   align-items: center;
+}
+
+.task-description-div {
+  width: 30rem;
+  height: auto;
+}
+
+.task-description p {
+  font-size: 1rem;
 }
