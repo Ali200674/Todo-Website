@@ -1,5 +1,12 @@
 import "../styles/header.css";
 
+/**
+ * A component that is the header of the website.
+ *
+ * Contains a h1 and a p for the tagline
+ *
+ * @returns {JSX.element} A component that is the header of the website
+ */
 function Header() {
   return (
     <header>

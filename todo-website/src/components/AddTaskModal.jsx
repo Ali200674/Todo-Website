@@ -12,7 +12,9 @@ import { useRef } from "react";
  * setModal is to change the modalVar for when the user clicks the X on the top right of the modal
  *
  *
- * @param {*} param An object.
+ * @param {boolean} modalVar A boolean that is used to see if the user has clicked a button to show the modal.
+ * @param {Function} setModal A function to change the modalVar variable.
+ * @param {Function} addTask A function that adds a new task to the array of objects from App.jsx
  * @returns {JSX.element}
  */
 function ButtonModal({ modalVar, setModal, addTask }) {
@@ -23,8 +25,15 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     return null;
   }
 
+  /*
+    A function to create a new task when the user clicks on "Add Task"
+    It uses the addTask function that is passed down from App.jsx.
+    It also closes the modal.
+  */
   function createNewTask(event) {
     event.preventDefault();
+
+    // Add the task and close out the modal.
     addTask((p) => [...p, { taskName: inputBarValue.current.value }]);
     setModal((p) => !p);
   }
@@ -36,15 +45,20 @@ function ButtonModal({ modalVar, setModal, addTask }) {
           <h2>Task Details</h2>
         </div>
 
+        {/* Exit img that closes out the modal if clicked */}
         <div className="exit-modal-button">
           <img src={close} onClick={() => setModal((p) => !p)} />
         </div>
 
+        {/* For all options to add a task */}
         <div className="modal-options">
           <div className="input-field-div">
+            {/* A sub heading above the input field */}
             <div className="input-field-heading">
               <h3>Task Name</h3>
             </div>
+
+            {/* For the input field */}
             <div className="input-field">
               <input
                 type="text"
@@ -54,7 +68,8 @@ function ButtonModal({ modalVar, setModal, addTask }) {
             </div>
           </div>
 
-          {/* <div className="priority-type-div">
+          {/* For priorities. Contains a Low, Medium and Height priority */}
+          <div className="priority-type-div">
             <div className="priority-heading">
               <h3>Prioritys</h3>
             </div>
@@ -72,9 +87,10 @@ function ButtonModal({ modalVar, setModal, addTask }) {
               <input type="checkbox" name="priority" value="high" />
               <span>High Priority</span>
             </div>
-          </div> */}
+          </div>
         </div>
 
+        {/* A button that adds a task. */}
         <div className="submit-form">
           <form>
             <button onClick={createNewTask}>Add Task</button>

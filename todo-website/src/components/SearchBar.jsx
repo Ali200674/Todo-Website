@@ -3,7 +3,8 @@ import { useRef } from "react";
 /**
  * This component is designed to be a search bar or filter for the user's tasks.
  *
- * @returns
+ * @param {Function} setSearchFilter A function that sets the search filter.
+ * @returns {JSX.Element} A component to represent a search bar.
  */
 function SearchBar({ setSearchFilter }) {
   const userInput = useRef(null);

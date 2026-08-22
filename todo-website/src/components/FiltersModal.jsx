@@ -11,8 +11,9 @@ import close from "../assets/close.svg";
  * setModal is to change the modalVar for when the user clicks the X on the top right of the modal
  *
  *
- * @param {*} param An object.
- * @returns {JSX.element}
+ * @param {boolean} modalVar A boolean that is used to see if the user has clicked a button to show the modal.
+ * @param {Function} setModal A function to change the modalVar variable.
+ * @returns {JSX.element} A component that represents a modal for filtering for a task
  */
 function FilterModal({ modalVar, setModal }) {
   // If the modalVar is false, don't open the modal or just return null
@@ -20,18 +21,23 @@ function FilterModal({ modalVar, setModal }) {
     return null;
   }
 
+  // Using a createPortal to show this outside of the root div
   return createPortal(
     <div className="modal-background">
+      {/* Title of the modal */}
       <div className="filter-options-div">
         <div className="title">
           <h2>Filter Options</h2>
         </div>
 
+        {/* A img to exit out of the modal using the setModal variable */}
         <div className="exit-modal-button">
           <img src={close} onClick={() => setModal((p) => !p)} />
         </div>
 
+        {/* Div that contains all of the modal options */}
         <div className="modal-options">
+          {/* A priority div that contains a Low, Medium and Height priority  */}
           <div className="priority-div">
             <div className="priority-heading">
               <h3>Prioritys</h3>
@@ -52,6 +58,8 @@ function FilterModal({ modalVar, setModal }) {
               <span>High Priority</span>
             </div>
           </div>
+
+          {/* A status div that contains a Active or Completed div */}
           <div className="status-div">
             <div className="status-heading">
               <h3>Status</h3>
