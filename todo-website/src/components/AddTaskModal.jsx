@@ -38,11 +38,14 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     addTask((p) => [
       ...p,
       {
+        taskId: crypto.randomUUID(),
         taskName: inputBarValue.current.value,
         description: descriptionValue.current.value,
       },
     ]);
     setModal((p) => !p);
+
+    console.log("Task Id Created: " + id);
   }
 
   return createPortal(
@@ -75,7 +78,7 @@ function ButtonModal({ modalVar, setModal, addTask }) {
             </div>
           </div>
 
-          {/* For priorities. Contains a Low, Medium and Height priority */}
+          {/* For priorities. Contains a Low, Medium and Height priority
           <div className="priority-type-div">
             <div className="priority-heading">
               <h3>Prioritys</h3>
@@ -94,7 +97,7 @@ function ButtonModal({ modalVar, setModal, addTask }) {
               <input type="checkbox" name="priority" value="high" />
               <span>High Priority</span>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="description-div">

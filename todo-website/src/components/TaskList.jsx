@@ -11,7 +11,12 @@ import { use, useEffect } from "react";
  * @param {string} searchFilter A string that is used to filter out tasks from the search bar.
  * @returns
  */
-function TaskList({ tasks, searchFilter }) {
+function TaskList({ tasks, searchFilter, filterCurrentTask }) {
+  function removeSpecificTask(taskId) {
+    filterCurrentTask(tasks.filter((task) => task.taskId !== taskId));
+    console.log("Task Id Removed: " + taskId);
+  }
+
   return (
     <div className="task-list-container">
       {/* If there is no tasks, display a div that says No Tasks! */}
@@ -23,7 +28,14 @@ function TaskList({ tasks, searchFilter }) {
         // Else, display whatever tasks there is and filter through them if the user typed in something in the search bar.
         tasks
           .filter((t) => t.taskName.includes(searchFilter))
-          .map((task, key) => <TaskItem key={key} taskInfo={task} />)
+          .map((task, key) => (
+            <TaskItem
+              key={key}
+              taskId={task.taskId}
+              taskInfo={task}
+              removeCurrentTask={removeSpecificTask}
+            />
+          ))
       )}
     </div>
   );

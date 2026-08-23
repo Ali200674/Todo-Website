@@ -24,7 +24,11 @@ function App() {
 
       <TaskToolBar addTask={addNewTask} setSearchFilter={setSearchFilter} />
 
-      <TaskList tasks={tasks} searchFilter={searchFilter} />
+      <TaskList
+        tasks={tasks}
+        searchFilter={searchFilter}
+        filterCurrentTask={addNewTask}
+      />
     </>
   );
 }

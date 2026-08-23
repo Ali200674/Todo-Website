@@ -1,8 +1,8 @@
 .task-item-div {
-  /* display: flex;
+  display: grid;
+  grid-template-rows: 0.2fr 0.8fr;
 
-  align-items: flex-start;
-  justify-content: space-between; */
+  position: relative;
 
   height: 100px;
 
@@ -130,4 +130,30 @@ textarea {
 
 .task-description p {
   font-size: 1rem;
+}
+
+/*  */
+
+.delete-task-div img {
+  cursor: pointer;
+}
+
+/* .buttons-div {
+  position: absolute;
+
+  bottom: 0px;
+  right: 0px;
+} */
+
+.delete-task-div {
+  position: absolute;
+
+  bottom: 0px;
+  right: 0px;
+
+  padding: 10px;
+}
+
+.extra-information {
+  position: relative;
 }

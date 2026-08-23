@@ -1,14 +1,17 @@
 import "../styles/TaskItem.css";
 import downarrow from "../assets/down-arrow.svg";
 import { useState } from "react";
+import trashcan from "../assets/trash_can.svg";
 
 /**
+ * Test
+ *
  * A component that represents a single task.
  *
  * @param {object} taskObj A object that contains information about the user's task
  * @returns {JSX.element} A component that represents a task
  */
-function TaskItem({ taskInfo }) {
+function TaskItem({ taskInfo, removeCurrentTask, taskId }) {
   const [isClicked, setIsClicked] = useState(false);
   const [taskCompleted, setTaskCompleted] = useState(false);
 
@@ -52,6 +55,16 @@ function TaskItem({ taskInfo }) {
           </div>
           <div className="task-description">
             <p>{taskInfo.description}</p>
+          </div>
+        </div>
+
+        <div className="buttons-div">
+          <div className="delete-task-div">
+            <img
+              src={trashcan}
+              alt=""
+              onClick={() => removeCurrentTask(taskId)}
+            />
           </div>
         </div>
       </div>
