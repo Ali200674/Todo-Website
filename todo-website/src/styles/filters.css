@@ -2,6 +2,8 @@
 .modal-options {
   display: flex;
 
+  flex-direction: column;
+
   justify-content: center;
   align-items: flex-start;
 
@@ -84,8 +86,23 @@ h3 {
   justify-content: center;
 }
 
+.priority-type {
+  display: flex;
+
+  gap: 1.1rem;
+}
+
+.priority-heading h3 {
+  margin-top: 0px;
+}
+
+.priority-type-div {
+  margin-bottom: 2rem;
+}
+
 /* FilterModal.jsx */
-input[type="checkbox"]:checked::before {
+input[type="checkbox"]:checked::before,
+input[type="radio"]:checked::before {
   font-size: 1.5rem;
 
   content: "\2713";
@@ -93,6 +110,7 @@ input[type="checkbox"]:checked::before {
   color: white;
 }
 
+input[type="radio"],
 input[type="checkbox"] {
   height: 30px;
   width: 30px;

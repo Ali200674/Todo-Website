@@ -14,7 +14,6 @@ import { use, useEffect } from "react";
 function TaskList({ tasks, searchFilter, filterCurrentTask }) {
   function removeSpecificTask(taskId) {
     filterCurrentTask(tasks.filter((task) => task.taskId !== taskId));
-    console.log("Task Id Removed: " + taskId);
   }
 
   return (

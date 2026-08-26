@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import "../styles/Filters.css";
 import close from "../assets/close.svg";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 /**
  * This component is designed to be a modal for creating a task. Accepts two parameters.
@@ -20,6 +20,7 @@ import { useRef } from "react";
 function ButtonModal({ modalVar, setModal, addTask }) {
   const inputBarValue = useRef(null);
   const descriptionValue = useRef(null);
+  const [radioButtonValue, setRadioButtonValue] = useState("");
 
   // If the modalVar is false, don't open the modal or just return null
   if (!modalVar) {
@@ -41,11 +42,14 @@ function ButtonModal({ modalVar, setModal, addTask }) {
         taskId: crypto.randomUUID(),
         taskName: inputBarValue.current.value,
         description: descriptionValue.current.value,
+        priority: radioButtonValue,
       },
     ]);
     setModal((p) => !p);
+  }
 
-    console.log("Task Id Created: " + id);
+  function handleRadioButtonChange(event) {
+    setRadioButtonValue(event.target.value);
   }
 
   return createPortal(
@@ -77,27 +81,46 @@ function ButtonModal({ modalVar, setModal, addTask }) {
               />
             </div>
           </div>
-
-          {/* For priorities. Contains a Low, Medium and Height priority
+          {/* For priorities. Contains a Low, Medium and Height priority */}
           <div className="priority-type-div">
             <div className="priority-heading">
               <h3>Prioritys</h3>
             </div>
-            <div className="low-priority checkbox-div">
-              <input type="checkbox" name="priority" value="low" />
-              <span>Low Priotity</span>
-            </div>
+            <div className="priority-type">
+              <div className="low-priority checkbox-div">
+                <input
+                  type="radio"
+                  name="priority"
+                  value="low"
+                  checked={radioButtonValue === "low"}
+                  onChange={handleRadioButtonChange}
+                />
+                <span>Low Priotity</span>
+              </div>
 
-            <div className="middle-priority checkbox-div">
-              <input type="checkbox" name="priority" value="medium" />
-              <span>Medium Priority</span>
-            </div>
+              <div className="middle-priority checkbox-div">
+                <input
+                  type="radio"
+                  name="priority"
+                  value="medium"
+                  checked={radioButtonValue === "medium"}
+                  onChange={handleRadioButtonChange}
+                />
+                <span>Medium Priority</span>
+              </div>
 
-            <div className="high-priority checkbox-div">
-              <input type="checkbox" name="priority" value="high" />
-              <span>High Priority</span>
+              <div className="high-priority checkbox-div">
+                <input
+                  type="radio"
+                  name="priority"
+                  value="high"
+                  checked={radioButtonValue === "high"}
+                  onChange={handleRadioButtonChange}
+                />
+                <span>High Priority</span>
+              </div>
             </div>
-          </div> */}
+          </div>
         </div>
 
         <div className="description-div">

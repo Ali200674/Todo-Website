@@ -1,7 +1,4 @@
 .task-item-div {
-  display: grid;
-  grid-template-rows: 0.2fr 0.8fr;
-
   position: relative;
 
   height: 100px;
@@ -25,10 +22,26 @@
   transition: height 0.5s ease;
 }
 
+/* When the user clicks on the arrow, this class get's activated and added to the task-item-div */
 .clicked {
   height: 450px;
 }
 
+/* The top or main information of the task */
+.top-section {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+/* Task name */
+.task-item-heading h2 {
+  color: var(--text-color);
+}
+
+/* For task completed checkbos to the left of the h2 */
 .left-side-task input[type="checkbox"] {
   height: 30px;
   width: 30px;
@@ -43,24 +56,11 @@
   justify-content: center;
 }
 
-.extra-information {
-  color: white;
-}
-
 .left-side-task input[type="checkbox"]:hover {
-  height: 30px;
-  width: 30px;
-
-  appearance: none;
-  background-color: transparent;
-
   border: 1px solid rgb(149, 8, 192);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
+/* Whole left side (checkbox and h2) */
 .left-side-task {
   display: flex;
   flex-direction: row;
@@ -72,9 +72,21 @@
   align-items: center;
 }
 
+/* Right side images (trash can and down arrow) */
 .right-side img {
   cursor: pointer;
+}
+/* For the images to the right side */
+.images-div {
+  display: flex;
 
+  flex-direction: row;
+
+  gap: 30px;
+}
+
+/* For the expand arrow */
+.expand-task img {
   transition: transform 0.5s ease;
 }
 
@@ -82,15 +94,24 @@
   transform: scaleY(-1);
 }
 
+/* When the user clicks on the checkbox near the h2 element, this activates */
 .cross-out-text {
   text-decoration: line-through;
 }
 
-.task-item-heading h2 {
-  color: var(--text-color);
+/* For extra information about the task like description and the type of priority. Everything below is under this class */
+.extra-information {
+  color: white;
+
+  position: relative;
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 1.2rem;
 }
 
-.input-field input,
+/* For the description area */
 textarea {
   padding: 1.2rem;
 
@@ -107,22 +128,13 @@ textarea {
   font-size: 1.2rem;
 
   border-radius: 2rem;
-}
 
-textarea {
   resize: none;
   width: 550px;
   height: 200px;
 }
 
-.top-section {
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-}
-
+/* The div that contains the h3 heading and textarea */
 .task-description-div {
   width: 30rem;
   height: auto;
@@ -132,28 +144,15 @@ textarea {
   font-size: 1rem;
 }
 
-/*  */
+/* For the radio buttons  */
+.priority-selected-div {
+  display: flex;
 
-.delete-task-div img {
-  cursor: pointer;
+  justify-content: center;
+
+  gap: 20px;
 }
 
-/* .buttons-div {
-  position: absolute;
-
-  bottom: 0px;
-  right: 0px;
-} */
-
-.delete-task-div {
-  position: absolute;
-
-  bottom: 0px;
-  right: 0px;
-
-  padding: 10px;
-}
-
-.extra-information {
-  position: relative;
+.priority-div input[type="radio"] {
+  border: 1px solid gray;
 }
