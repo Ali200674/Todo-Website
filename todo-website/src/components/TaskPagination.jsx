@@ -10,7 +10,7 @@ function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
   getPageAmount();
 
   function getAmountOfPages() {
-    return taskObj.length + 20 / amountPerPageTask;
+    return taskObj.length / amountPerPageTask;
   }
 
   function getPageAmount() {
