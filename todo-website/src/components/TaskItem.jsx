@@ -12,14 +12,46 @@ import { useId } from "react";
  * @param {object} taskObj A object that contains information about the user's task
  * @returns {JSX.element} A component that represents a task
  */
-function TaskItem({ taskInfo, removeCurrentTask, taskId }) {
+function TaskItem({
+  taskInfo,
+  removeCurrentTask,
+  taskId,
+  updateTaskCompleted,
+}) {
   const [isClicked, setIsClicked] = useState(false);
-  const [taskCompleted, setTaskCompleted] = useState(false);
-  const [selectedRadioButton, setSelectedRadioButton] = useState(
-    taskInfo.priority,
-  );
+  const selectedRadioButton = taskInfo.priorityType;
 
-  const groupButtonId = useId();
+  async function removeTask() {
+    const response = await fetch(`http://localhost:8080/api/task/${taskId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error("Issue adding task to backend.");
+    }
+
+    removeCurrentTask(taskId);
+  }
+
+  async function setTaskAsCompleted() {
+    const competedStatus = !taskInfo.taskCompleted;
+
+    const response = await fetch(`http://localhost:8080/api/task/${taskId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        taskCompleted: competedStatus,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("PATCH method went wrong.");
+    }
+
+    updateTaskCompleted(taskInfo.id, competedStatus);
+  }
 
   return (
     <div className={isClicked ? "task-item-div clicked" : "task-item-div"}>
@@ -30,13 +62,14 @@ function TaskItem({ taskInfo, removeCurrentTask, taskId }) {
           <div className="task-check-off">
             <input
               type="checkbox"
-              onClick={() => setTaskCompleted(!taskCompleted)}
+              onChange={setTaskAsCompleted}
+              checked={taskInfo.taskCompleted}
             />
           </div>
 
           {/* If the taskComplete variable is true, cross the h2 off, else don't*/}
           <div className="task-item-heading">
-            <h2 className={taskCompleted ? "cross-out-text" : ""}>
+            <h2 className={taskInfo.taskCompleted ? "cross-out-text" : ""}>
               {taskInfo.taskName}
             </h2>
           </div>
@@ -46,11 +79,7 @@ function TaskItem({ taskInfo, removeCurrentTask, taskId }) {
         <div className="right-side">
           <div className="images-div">
             <div className="delete-task-div">
-              <img
-                src={trashcan}
-                alt=""
-                onClick={() => removeCurrentTask(taskId)}
-              />
+              <img src={trashcan} alt="" onClick={removeTask} />
             </div>
             <div className="expand-task">
               <img
@@ -71,7 +100,7 @@ function TaskItem({ taskInfo, removeCurrentTask, taskId }) {
             <h3>Description</h3>
           </div>
           <div className="task-description">
-            <p>{taskInfo.description}</p>
+            <p>{taskInfo.taskDescription}</p>
           </div>
         </div>
         <div className="priority-div">
@@ -82,11 +111,10 @@ function TaskItem({ taskInfo, removeCurrentTask, taskId }) {
             <div className="low-priority checkbox-div">
               <input
                 type="radio"
-                name={groupButtonId}
+                name={taskId}
                 value="low"
                 disabled
-                checked={selectedRadioButton === "low"}
-                onChange={() => console.log("Changed Low")}
+                checked={selectedRadioButton === "LOW"}
               />
               <span>Low Priotity</span>
             </div>
@@ -94,11 +122,10 @@ function TaskItem({ taskInfo, removeCurrentTask, taskId }) {
             <div className="middle-priority checkbox-div">
               <input
                 type="radio"
-                name={groupButtonId}
+                name={taskId}
                 value="medium"
                 disabled
-                checked={selectedRadioButton === "medium"}
-                onChange={() => console.log("Changed Medium")}
+                checked={selectedRadioButton === "MEDIUM"}
               />
               <span>Medium Priority</span>
             </div>
@@ -106,11 +133,10 @@ function TaskItem({ taskInfo, removeCurrentTask, taskId }) {
             <div className="high-priority checkbox-div">
               <input
                 type="radio"
-                name={groupButtonId}
+                name={taskId}
                 value="high"
                 disabled
-                checked={selectedRadioButton === "high"}
-                onChange={() => console.log("Changed High")}
+                checked={selectedRadioButton === "HIGH"}
               />
               <span>High Priority</span>
             </div>

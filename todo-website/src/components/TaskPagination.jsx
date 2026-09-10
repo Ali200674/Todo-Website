@@ -100,7 +100,6 @@ function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
       }
     } else /* Else, there is less than four pages of tasks*/ {
       // Add the numbered amount of pages that we have. Choosing either the amount of pages we have currently, or the amount of visible pages we can have
-      console.log(amountPerPageTask, getAmountPages);
       for (
         let i = 1;
         i <= Math.min(numberOfVisiblePageination, getAmountPages);

@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import SearchBar from "./SearchBar";
-import ButtonModal from "./AddTaskModal.jsx";
-import FilterModal from "./FiltersModal.jsx";
+import CreateTaskModal from "./CreateTaskModal.jsx";
+import TaskFilterModal from "./TaskFilterModal.jsx";
 
 import "../styles/SearchBar.css";
 
@@ -13,12 +13,17 @@ import searchbar from "../assets/search-bar-logo.svg";
  *
  * @param {Function} addTask A function that adds a new task to the array of objects from App.jsx
  * @param {Function} setSearchFilter A function that sets the search filter for the search bar from App.jsx
- * @returns {JSX.Element} A component that represents the task tool bar of the website.
+ * @returns {React.ReactNode} A component that represents the task tool bar of the website.
  */
-function TaskToolBar({ addTask, setSearchFilter }) {
+function TaskToolBar({ addTask, setSearchFilter, setFilters }) {
   // Two useStates. One for the filters button and the other for the create task button
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [showButtonModal, setShowButtonModal] = useState(false);
+
+  const [priorityValue, setPriorityValues] = useState({
+    priority: { low: false, medium: false, high: false },
+    status: { active: false, completed: false },
+  }); // useState for remembering what kind of priority value(s) the user has clicked
 
   return (
     <div className="search-bar-div">
@@ -33,7 +38,13 @@ function TaskToolBar({ addTask, setSearchFilter }) {
       >
         Filters
       </button>
-      <FilterModal setModal={setShowFilterModal} modalVar={showFilterModal} />
+      <TaskFilterModal
+        setModal={setShowFilterModal}
+        modalVar={showFilterModal}
+        setFilters={setFilters}
+        filterValues={priorityValue}
+        setPriorityValues={setPriorityValues}
+      />
 
       {/* Button to open the AddTaskModal component */}
       <button
@@ -42,7 +53,7 @@ function TaskToolBar({ addTask, setSearchFilter }) {
       >
         + Create Task
       </button>
-      <ButtonModal
+      <CreateTaskModal
         setModal={setShowButtonModal}
         modalVar={showButtonModal}
         addTask={addTask}

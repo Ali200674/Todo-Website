@@ -32,22 +32,40 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     It uses the addTask function that is passed down from App.jsx.
     It also closes the modal.
   */
-  function createNewTask(event) {
+  async function createNewTask(event) {
+    let returnedData;
+
     event.preventDefault();
 
-    // Add the task and close out the modal.
-    addTask((p) => [
-      ...p,
-      {
-        taskId: crypto.randomUUID(),
-        taskName: inputBarValue.current.value,
-        description: descriptionValue.current.value,
-        priority: radioButtonValue,
+    // Create the task
+    const task = {
+      taskName: inputBarValue.current.value,
+      taskDescription: descriptionValue.current.value,
+      priorityType: radioButtonValue.toUpperCase(),
+      taskCompleted: false,
+    };
+
+    // Send a POST request to the backend
+    const response = await fetch("http://localhost:8080/api/task", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    ]);
-    setModal((p) => !p);
+      body: JSON.stringify(task),
+    });
+
+    if (!response.ok) {
+      throw new Error("Issue adding task to backend.");
+    }
+
+    returnedData = await response.json();
+
+    // Add the task and close out the modal.
+    addTask((tasks) => [...tasks, returnedData]);
+    setModal((isActive) => !isActive);
   }
 
+  // Changes the radio button value
   function handleRadioButtonChange(event) {
     setRadioButtonValue(event.target.value);
   }

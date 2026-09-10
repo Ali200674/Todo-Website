@@ -4,7 +4,7 @@ import TaskList from "./TaskList";
 
 import TaskToolBar from "./TaskToolBar";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import TaskPagination from "./TaskPagination";
 
@@ -14,55 +14,49 @@ import TaskPagination from "./TaskPagination";
  * @returns {JSX.Element}
  */
 function App() {
-  // Two use states. One to hold the tasks as an array of objects.
-  // The other one for a search filter on the search field in the tool bar
-  const [tasks, addNewTask] = useState([
-    {
-      taskId: crypto.randomUUID(),
-      taskName: "A",
-      description: "A",
-      priority: "low",
-    },
-    {
-      taskId: crypto.randomUUID(),
-      taskName: "B",
-      description: "A",
-      priority: "low",
-    },
-    {
-      taskId: crypto.randomUUID(),
-      taskName: "C",
-      description: "A",
-      priority: "low",
-    },
-    {
-      taskId: crypto.randomUUID(),
-      taskName: "D",
-      description: "A",
-      priority: "low",
-    },
-    {
-      taskId: crypto.randomUUID(),
-      taskName: "E",
-      description: "A",
-      priority: "low",
-    },
-  ]);
-  const [searchFilter, setSearchFilter] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [tasks, setTasksModify] = useState([]); // useState for adding and modifying the array
+  const [searchFilter, setSearchFilter] = useState(""); // useState for setting the search filter
+  const [currentPage, setCurrentPage] = useState(1); // useState for setting the current page
+  const [fiters, setFilters] = useState({
+    priorities: [],
+    status: [],
+  }); // useState that contains filters from the filtersModal.
+
+  console.log(tasks);
+  console.log(fiters);
+
+  useEffect(() => {
+    async function getAllTasks() {
+      // A GET request to get all tasks from database
+      const response = await fetch("http://localhost:8080/api/tasks");
+
+      // Turn the json into a useable object
+      const data = await response.json();
+
+      // Add all of the tasks.
+      setTasksModify(data);
+    }
+
+    getAllTasks();
+  }, []); // useEffect for getting all of the tasks from the backend once this component is initialized once.
 
   return (
     <>
       {/* For the header */}
       <Header />
 
-      <TaskToolBar addTask={addNewTask} setSearchFilter={setSearchFilter} />
+      <TaskToolBar
+        addTask={setTasksModify}
+        setSearchFilter={setSearchFilter}
+        setFilters={setFilters}
+      />
 
       <TaskList
         tasks={tasks}
         searchFilter={searchFilter}
-        filterCurrentTask={addNewTask}
+        setTasksModify={setTasksModify}
         currentPage={currentPage}
+        filters={fiters}
       />
 
       <TaskPagination
