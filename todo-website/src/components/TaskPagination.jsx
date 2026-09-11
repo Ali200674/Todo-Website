@@ -1,14 +1,22 @@
 import "../styles/TaskPagination.css";
 
+/**
+ *
+ * @param {object} taskObj The object that holds all of the tasks.
+ * @param {Function} setCurrentPage, A function that sets the current page the user is on
+ * @param {number} currentPage, A number indicating which page the user is on
+ * @returns {React.ReactElement}
+ */
 function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
+  // How much tasks are allowed on a page. (Does not actually represent how much tasks show on a page, that is on a different component)
   const amountPerPageTask = 5;
-
   const getAmountPages = Math.ceil(getAmountOfPages());
-  const pages = [];
+  const pages = []; // Array that will hold divs representing the pages
   const numberOfVisiblePageination = 4;
 
   getPageAmount();
 
+  // Returns how much pages have the max amount of tasks
   function getAmountOfPages() {
     return taskObj.length / amountPerPageTask;
   }

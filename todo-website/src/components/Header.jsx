@@ -5,7 +5,7 @@ import "../styles/header.css";
  *
  * Contains a h1 and a p for the tagline
  *
- * @returns {JSX.element} A component that is the header of the website
+ * @returns {React.ReactElement}
  */
 function Header() {
   return (

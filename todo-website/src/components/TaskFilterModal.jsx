@@ -6,17 +6,11 @@ import { useState } from "react";
 /**
  * This component is designed to be a modal for filtering for a task. Accepts two parameters.
  *
- * modalVar is a boolean and is for if the user clicks
- * the button to open the modal.
- *
- * setModal is to change the modalVar for when the user clicks the X on the top right of the modal
- *
- *
  * @param {boolean} modalVar A boolean that is used to see if the user has clicked a button to show the modal.
  * @param {Function} setModal A function to change the modalVar variable.
  * @param {Function} setFilters A function to change the filters the user wants to apply for filtering out tasks
  * @param {Function} setPriorityValues A function to change the
- * @returns {JSX.element} A component that represents a modal for filtering for a task
+ * @returns {React.ReactElement}
  */
 function FilterModal({
   modalVar,
@@ -30,11 +24,11 @@ function FilterModal({
     return null;
   }
 
-  //TODO: Figure out a way to keep the state of the checkbox after closure
+  // A method to remember what the user has choosen for filters on the page
+  function rememberUserChoosenFilter(event) {
+    const { value, name } = event.target;
 
-  function addFilterPriority(event) {
-    const { value, name, checked } = event.target;
-
+    // Drill down to which filter array and change it's value (boolean)
     setPriorityValues((values) => ({
       ...values,
       [name]: {
@@ -42,8 +36,11 @@ function FilterModal({
         [value]: !values[name][value],
       },
     }));
+  }
 
-    console.log();
+  // Method to add a filter the user clicked on to the filters object in App.jsx
+  function addFilterPriority(event) {
+    rememberUserChoosenFilter(event);
 
     if (event.target.name === "priority") {
       setFilters((value) => ({

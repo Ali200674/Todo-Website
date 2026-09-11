@@ -23,7 +23,7 @@ function TaskList({
 }) {
   const tasksShowedOnEachPage = 5;
 
-  // Function to remove a specific task
+  // Function to remove a specific task using it's id
   function removeSpecificTask(taskId) {
     setTasksModify(tasks.filter((task) => task.id !== taskId));
   }
@@ -43,9 +43,9 @@ function TaskList({
    * @param {boolean} completionStatus A boolean indicating if a task is complete or not
    */
   function updateTaskCompleted(taskId, completionStatus) {
-    /**
-     * Map through each task. If we find the specific task by the taskId parameter,
-     * keep everything the same in the task, but change the completion status
+    /*
+      Map through each task. If we find the specific task by the taskId parameter,
+      keep everything the same in the task, but change the completion status
      */
     setTasksModify((previousTasks) =>
       previousTasks.map((task) =>

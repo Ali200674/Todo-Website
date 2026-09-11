@@ -11,7 +11,7 @@ import TaskPagination from "./TaskPagination";
 /**
  * A component that brings everything together
  *
- * @returns {JSX.Element}
+ * @returns {React.ReactElement}
  */
 function App() {
   const [tasks, setTasksModify] = useState([]); // useState for adding and modifying the array

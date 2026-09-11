@@ -15,7 +15,7 @@ import { useRef, useState } from "react";
  * @param {boolean} modalVar A boolean that is used to see if the user has clicked a button to show the modal.
  * @param {Function} setModal A function to change the modalVar variable.
  * @param {Function} addTask A function that adds a new task to the array of objects from App.jsx
- * @returns {JSX.element}
+ * @returns {React.ReactElement}
  */
 function ButtonModal({ modalVar, setModal, addTask }) {
   const inputBarValue = useRef(null);

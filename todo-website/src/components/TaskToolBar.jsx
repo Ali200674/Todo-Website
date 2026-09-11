@@ -6,14 +6,12 @@ import TaskFilterModal from "./TaskFilterModal.jsx";
 
 import "../styles/SearchBar.css";
 
-import searchbar from "../assets/search-bar-logo.svg";
-
 /**
  * A component that represents the top tool bar that contains a search field and two buttons related to tasks.
  *
  * @param {Function} addTask A function that adds a new task to the array of objects from App.jsx
  * @param {Function} setSearchFilter A function that sets the search filter for the search bar from App.jsx
- * @returns {React.ReactNode} A component that represents the task tool bar of the website.
+ * @returns {React.ReactNode}
  */
 function TaskToolBar({ addTask, setSearchFilter, setFilters }) {
   // Two useStates. One for the filters button and the other for the create task button
