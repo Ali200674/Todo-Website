@@ -548,6 +548,15 @@ input[type="checkbox"]:hover {
 .priority-div input[type="radio"] {
   border: 1px solid gray;
 }
+
+.right-side-information {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+
+  justify-content: center;
+}
 /* END OF TASKITEM.JSX */
 
 /* START OF TASKLIST.JSX */
@@ -629,5 +638,4 @@ input[type="checkbox"]:hover {
     0 0 55px #b218ff,
     0 0 75px #b218ff;
 }
-
 /* END OF TASKPAGINATION.JSX */

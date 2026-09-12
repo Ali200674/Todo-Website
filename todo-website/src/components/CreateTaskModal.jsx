@@ -20,7 +20,7 @@ import { DatePicker } from "rsuite";
 function ButtonModal({ modalVar, setModal, addTask }) {
   const inputBarValue = useRef(null);
   const descriptionValue = useRef(null);
-
+  const [dateSelected, setSelectedDate] = useState("");
   const [radioButtonValue, setRadioButtonValue] = useState("");
 
   // If the modalVar is false, don't open the modal or just return null
@@ -44,6 +44,7 @@ function ButtonModal({ modalVar, setModal, addTask }) {
       taskDescription: descriptionValue.current.value,
       priorityType: radioButtonValue.toUpperCase(),
       taskCompleted: false,
+      taskDueDate: dateSelected,
     };
 
     // Send a POST request to the backend
@@ -163,7 +164,12 @@ function ButtonModal({ modalVar, setModal, addTask }) {
                 <h3>Due-Date (*)</h3>
               </div>
               <div className="date-picker">
-                <DatePicker format="MM/dd/yyyy" />
+                <DatePicker
+                  format="MM/dd/yyyy"
+                  onChange={(date) => {
+                    setSelectedDate(date.toISOString().split("T")[0]);
+                  }}
+                />
               </div>
             </div>
           </div>
