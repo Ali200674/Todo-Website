@@ -1,5 +1,3 @@
-import "../styles/header.css";
-
 /**
  * A component that is the header of the website.
  *

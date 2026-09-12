@@ -1,6 +1,4 @@
-import "../styles/TaskList.css";
 import TaskItem from "./TaskItem";
-import React, { use, useEffect } from "react";
 
 /**
  * A component that represents the container of which tasks will be placed in.

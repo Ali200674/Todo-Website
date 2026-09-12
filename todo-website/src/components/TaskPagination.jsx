@@ -1,5 +1,3 @@
-import "../styles/TaskPagination.css";
-
 /**
  *
  * @param {object} taskObj The object that holds all of the tasks.

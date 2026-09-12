@@ -1,7 +1,5 @@
 import { createPortal } from "react-dom";
-import "../styles/Filters.css";
 import close from "../assets/close.svg";
-import { useState } from "react";
 
 /**
  * This component is designed to be a modal for filtering for a task. Accepts two parameters.

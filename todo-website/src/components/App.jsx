@@ -8,6 +8,10 @@ import { useState, useEffect } from "react";
 
 import TaskPagination from "./TaskPagination";
 
+import "../styles/main.css";
+
+import "rsuite/dist/rsuite-no-reset.min.css";
+
 /**
  * A component that brings everything together
  *

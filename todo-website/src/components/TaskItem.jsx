@@ -4,8 +4,6 @@ import { useState } from "react";
 import trashcan from "../assets/trash_can.svg";
 import downarrow from "../assets/down-arrow.svg";
 
-import "../styles/TaskItem.css";
-
 /**
  * A component that represents a single task.
  *

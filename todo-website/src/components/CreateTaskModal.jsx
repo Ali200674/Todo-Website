@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
-import "../styles/Filters.css";
 import close from "../assets/close.svg";
 import { useRef, useState } from "react";
+import { DatePicker } from "rsuite";
 
 /**
  * This component is designed to be a modal for creating a task. Accepts two parameters.
@@ -20,6 +20,7 @@ import { useRef, useState } from "react";
 function ButtonModal({ modalVar, setModal, addTask }) {
   const inputBarValue = useRef(null);
   const descriptionValue = useRef(null);
+
   const [radioButtonValue, setRadioButtonValue] = useState("");
 
   // If the modalVar is false, don't open the modal or just return null
@@ -73,8 +74,13 @@ function ButtonModal({ modalVar, setModal, addTask }) {
   return createPortal(
     <div className="modal-background">
       <div className="create-task-div">
-        <div className="title">
-          <h2>Task Details</h2>
+        <div className="modal-title-div">
+          <div className="title">
+            <h2>Task Details</h2>
+          </div>
+          <div className="extra-info">
+            <p>Enter in information about your task. (*) means it's optional</p>
+          </div>
         </div>
 
         {/* Exit img that closes out the modal if clicked */}
@@ -99,57 +105,72 @@ function ButtonModal({ modalVar, setModal, addTask }) {
               />
             </div>
           </div>
+
+          <div className="description-div">
+            <div className="description-div-heading">
+              <h3>Task Description (*)</h3>
+            </div>
+            <textarea
+              name=""
+              id=""
+              ref={descriptionValue}
+              placeholder="Enter in the description of the task"
+            ></textarea>
+          </div>
           {/* For priorities. Contains a Low, Medium and Height priority */}
-          <div className="priority-type-div">
-            <div className="priority-heading">
-              <h3>Prioritys</h3>
+          <div className="priority-main-div">
+            <div className="priority-type-div">
+              <div className="priority-heading">
+                <h3>Prioritys (*)</h3>
+              </div>
+              <div className="priority-type">
+                <div className="low-priority checkbox-div">
+                  <input
+                    type="radio"
+                    name="priority"
+                    value="low"
+                    checked={radioButtonValue === "low"}
+                    onChange={handleRadioButtonChange}
+                  />
+                  <span>Low Priotity</span>
+                </div>
+
+                <div className="middle-priority checkbox-div">
+                  <input
+                    type="radio"
+                    name="priority"
+                    value="medium"
+                    checked={radioButtonValue === "medium"}
+                    onChange={handleRadioButtonChange}
+                  />
+                  <span>Medium Priority</span>
+                </div>
+
+                <div className="high-priority checkbox-div">
+                  <input
+                    type="radio"
+                    name="priority"
+                    value="high"
+                    checked={radioButtonValue === "high"}
+                    onChange={handleRadioButtonChange}
+                  />
+                  <span>High Priority</span>
+                </div>
+              </div>
             </div>
-            <div className="priority-type">
-              <div className="low-priority checkbox-div">
-                <input
-                  type="radio"
-                  name="priority"
-                  value="low"
-                  checked={radioButtonValue === "low"}
-                  onChange={handleRadioButtonChange}
-                />
-                <span>Low Priotity</span>
+            <div className="due-date">
+              <div className="due-date-heading">
+                <h3>Due-Date (*)</h3>
               </div>
-
-              <div className="middle-priority checkbox-div">
-                <input
-                  type="radio"
-                  name="priority"
-                  value="medium"
-                  checked={radioButtonValue === "medium"}
-                  onChange={handleRadioButtonChange}
-                />
-                <span>Medium Priority</span>
-              </div>
-
-              <div className="high-priority checkbox-div">
-                <input
-                  type="radio"
-                  name="priority"
-                  value="high"
-                  checked={radioButtonValue === "high"}
-                  onChange={handleRadioButtonChange}
-                />
-                <span>High Priority</span>
+              <div className="date-picker">
+                <DatePicker format="MM/dd/yyyy" />
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="description-div">
-          <div className="description-div-heading">
-            <h3>Task Description (Optional)</h3>
-          </div>
-          <textarea name="" id="" ref={descriptionValue}></textarea>
         </div>
 
         {/* A button that adds a task. */}
-        <div className="submit-form">
+        <div className="submit-form-filters">
           <form>
             <button onClick={createNewTask}>Add Task</button>
           </form>

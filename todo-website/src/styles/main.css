@@ -1,0 +1,633 @@
+/* START OF HEADER.JSX */
+/* Font that will be used for this website */
+* {
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "wdth" 100,
+    "GRAD" 0,
+    "ROND" 0;
+}
+
+/* Variables for colors */
+:root {
+  --text-color: #f2e7f9;
+  --primary-color: #bf89e0;
+  --secondary-color: #7b215b;
+  --accent-color: #d45e89;
+
+  --rs-input-bg: transparent !important;
+  --rs-focus-ring-color: none !important;
+}
+
+body {
+  background-color: #110719;
+}
+
+header {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* For the header that holds the h1 title */
+.header-div {
+  font-size: 2.4rem;
+
+  color: var(--primary-color);
+
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* For the p under the h1 title */
+.tagline-div p {
+  font-size: 1.4rem;
+
+  margin-top: 0.5rem;
+
+  color: var(--text-color);
+}
+
+/* END OF HEADER.JSX */
+
+/* START OF SEARCHBAR.JSX */
+/* For the whole div that wrapps everything in the SearchBar.jsx */
+.search-bar-div {
+  display: flex;
+
+  justify-content: center;
+  align-items: stretch;
+
+  gap: 2rem;
+
+  margin-top: 4rem;
+}
+
+/* For the search bar input field */
+.search-bar-div input[type="text"] {
+  padding: 1.2rem;
+
+  outline: none;
+
+  background-color: transparent;
+
+  border: 1px solid purple;
+
+  border-radius: 2rem;
+
+  width: 25rem;
+
+  color: var(--text-color);
+
+  font-size: 1.2rem;
+
+  /* For the magnifying glass svg on the input field */
+  background-image: url("../assets/search-bar-logo.svg");
+  background-repeat: no-repeat;
+  background-position: center right 25px;
+  background-size: 1.5rem;
+}
+
+input:hover {
+  border: 1px solid rgba(128, 0, 128, 0.569);
+}
+
+.filters-task,
+.create-task {
+  padding: 1rem;
+
+  border-radius: 1rem;
+
+  outline: none;
+
+  border: none;
+
+  cursor: pointer;
+
+  color: var(--text-color);
+
+  background-color: transparent;
+
+  font-size: 1.2rem;
+}
+
+/* For the button in filters-task and create task */
+.create-task {
+  background-color: var(--accent-color);
+
+  transition: background-color 0.5s ease;
+}
+
+.filters-task {
+  background-color: var(--secondary-color);
+
+  transition: background-color 0.5s ease;
+}
+
+.create-task:hover {
+  background-color: #a5486a;
+}
+
+.filters-task:hover {
+  background-color: #631a49;
+}
+/* END OF SEARCHBAR.JSX */
+
+/* START OF CREATETASKMODAL.JSX */
+.modal-options {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.submit-form-filters form {
+  margin-top: 1rem;
+}
+
+.priority-main-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.submit-form-filters button {
+  padding: 1rem;
+
+  border-radius: 1rem;
+
+  outline: none;
+
+  cursor: pointer;
+
+  color: var(--text-color);
+
+  background-color: transparent;
+
+  font-size: 1.2rem;
+
+  border: none;
+
+  background-color: var(--accent-color);
+
+  transition: background-color 0.5s ease;
+}
+
+.submit-form-filters button:hover {
+  background-color: #a5486a;
+}
+
+.input-field input:hover,
+.description-div textarea:hover {
+  border: 1px solid rgba(189, 6, 189, 0.569);
+}
+
+.input-field input {
+  padding: 1.2rem;
+
+  outline: none;
+
+  background-color: transparent;
+
+  border: 1px solid rgb(203, 5, 247);
+
+  width: 100%;
+
+  color: var(--text-color);
+
+  border-radius: 0.5rem;
+}
+
+.rs-picker input {
+  padding: 1.2rem;
+
+  box-sizing: border-box;
+
+  border-radius: 0.5rem;
+
+  width: 100%;
+}
+
+.rs-picker-input-group {
+  border: 1px solid rgb(203, 5, 247) !important;
+  border-radius: 0.5rem !important;
+}
+
+.rs-picker-input-group:hover {
+  border: 1px solid rgba(189, 6, 189, 0.569) !important;
+  border-radius: 0.5rem !important;
+}
+
+.rs-picker-input-group {
+  width: 100%;
+}
+
+.rs-picker-input-group {
+  transition: none !important;
+}
+
+.rs-picker::selection {
+  border: 1px solid rgba(189, 6, 189, 0.569) !important;
+  border-radius: 0.5rem !important;
+}
+
+.rs-input {
+  color: white !important;
+}
+
+.due-date {
+  justify-self: stretch;
+  align-self: stretch;
+
+  width: 100%;
+}
+
+.modal-title-div p {
+  color: rgba(255, 255, 255, 0.465);
+}
+
+.input-field-div {
+  text-align: left;
+}
+
+.description-div textarea {
+  min-height: 5rem;
+  padding: 1.2rem;
+  width: 100%;
+
+  max-height: 10rem;
+
+  padding: 1.2rem;
+
+  outline: none;
+
+  background-color: transparent;
+
+  border: 1px solid rgb(203, 5, 247);
+
+  resize: vertical;
+
+  color: white;
+}
+
+input,
+textarea {
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+/* END OF CREATETASKMODAL.JSX */
+
+/* START FOR BOTH MODALS */
+input[type="checkbox"]:checked::before,
+input[type="radio"]:checked::before {
+  font-size: 1.5rem;
+
+  content: "\2713";
+
+  color: white;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  height: 30px;
+  width: 30px;
+
+  appearance: none;
+  background-color: transparent;
+
+  border: 1px solid rgb(156, 16, 156);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="radio"]:hover,
+input[type="checkbox"]:hover {
+  border: 1px solid rgb(122, 12, 122);
+}
+
+.modal-title-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-title-div h2,
+.filter-options-div h2 {
+  margin: 0px;
+
+  font-size: 2rem;
+}
+
+.create-task-div .submit-form-filters {
+  display: flex;
+
+  justify-content: right;
+}
+
+.checkbox-div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.exit-modal-button {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  padding: 1.2rem;
+
+  cursor: pointer;
+}
+.modal-background {
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  z-index: 1;
+}
+
+.filter-options-div,
+.create-task-div {
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  padding: 2rem;
+
+  background-color: rgb(45, 8, 75);
+
+  color: white;
+
+  z-index: 2;
+
+  border-radius: 1rem;
+
+  width: 30rem;
+}
+/* END FOR BOTH MODALS */
+
+/* START OF CREATETASKMODAL.JSX */
+.status-div {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 5px;
+}
+
+.filter-options-div {
+  align-items: center;
+  justify-content: center;
+}
+
+/* START OF TASKITEM.JSX */
+.task-item-div {
+  position: relative;
+
+  height: 100px;
+
+  width: calc(100% - 40px);
+
+  padding: 15px;
+  margin: 0 20px;
+  margin-top: 15px;
+
+  border: 1px solid var(--primary-color);
+
+  color: black;
+
+  border-radius: 1rem;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  transition: height 0.5s ease;
+}
+
+/* When the user clicks on the arrow, this class get's activated and added to the task-item-div */
+.clicked {
+  height: 450px;
+}
+
+/* The top or main information of the task */
+.top-section {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+/* Task name */
+.task-item-heading h2 {
+  color: var(--text-color);
+}
+
+/* For task completed checkbos to the left of the h2 */
+.left-side-task input[type="checkbox"] {
+  height: 30px;
+  width: 30px;
+
+  appearance: none;
+  background-color: transparent;
+
+  border: 1px solid rgb(185, 8, 239);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-side-task input[type="checkbox"]:hover {
+  border: 1px solid rgb(149, 8, 192);
+}
+
+/* Whole left side (checkbox and h2) */
+.left-side-task {
+  display: flex;
+  flex-direction: row;
+
+  gap: 20px;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+/* Right side images (trash can and down arrow) */
+.right-side img {
+  cursor: pointer;
+}
+/* For the images to the right side */
+.images-div {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: 30px;
+}
+
+/* For the expand arrow */
+.expand-task img {
+  transition: transform 0.5s ease;
+}
+
+.img-clicked {
+  transform: scaleY(-1);
+}
+
+/* When the user clicks on the checkbox near the h2 element, this activates */
+.cross-out-text {
+  text-decoration: line-through;
+}
+
+/* For extra information about the task like description and the type of priority. Everything below is under this class */
+.extra-information {
+  color: white;
+
+  position: relative;
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 1.2rem;
+}
+
+/* For the description area */
+
+/* The div that contains the h3 heading and textarea */
+.task-description-div {
+  width: 30rem;
+  height: auto;
+}
+
+.task-description p {
+  font-size: 1rem;
+}
+
+/* For the radio buttons  */
+.priority-selected-div {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 20px;
+}
+
+.priority-div input[type="radio"] {
+  border: 1px solid gray;
+}
+/* END OF TASKITEM.JSX */
+
+/* START OF TASKLIST.JSX */
+.task-list-container {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  color: var(--text-color);
+
+  margin: 0 auto;
+
+  margin-top: 1.8rem;
+
+  max-width: 1200px;
+
+  /* border: 1px solid purple; */
+
+  min-height: 650px;
+}
+
+/* If there is no tasks, then we say it's empty */
+.empty-container {
+  font-size: 1.2rem;
+
+  text-align: center;
+}
+
+/* END OF TASKLIST.JSX */
+
+/* START OF TASKPAGINATION.JSX */
+.pagination-div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+
+  gap: 20px;
+  color: var(--text-color);
+  margin: 0 auto;
+  margin-top: 1.8rem;
+  max-width: 1200px;
+
+  height: 100%;
+}
+
+.pagination-div > div {
+  height: fit-content;
+}
+
+.page-number,
+.page-ellipsis {
+  font-size: 1.4rem;
+
+  color: var(--text-color);
+
+  text-shadow: none;
+
+  transition: text-shadow 0.2s ease;
+}
+
+.page-number {
+  cursor: pointer;
+}
+
+.page-ellipsis {
+  align-self: baseline;
+}
+
+.page-number.clicked {
+  text-shadow:
+    0 0 5px #b218ff,
+    0 0 10px #b218ff,
+    0 0 15px #b218ff,
+    0 0 20px #b218ff,
+    0 0 30px #b218ff,
+    0 0 40px #b218ff,
+    0 0 55px #b218ff,
+    0 0 75px #b218ff;
+}
+
+/* END OF TASKPAGINATION.JSX */

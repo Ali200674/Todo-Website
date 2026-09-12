@@ -4,8 +4,6 @@ import SearchBar from "./SearchBar";
 import CreateTaskModal from "./CreateTaskModal.jsx";
 import TaskFilterModal from "./TaskFilterModal.jsx";
 
-import "../styles/SearchBar.css";
-
 /**
  * A component that represents the top tool bar that contains a search field and two buttons related to tasks.
  *
