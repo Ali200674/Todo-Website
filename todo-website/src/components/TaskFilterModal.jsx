@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import close from "../assets/close.svg";
+import { DatePicker } from "rsuite";
 
 /**
  * This component is designed to be a modal for filtering for a task. Accepts two parameters.
@@ -71,8 +72,13 @@ function FilterModal({
     <div className="modal-background">
       {/* Title of the modal */}
       <div className="filter-options-div">
-        <div className="title">
-          <h2>Filter Options</h2>
+        <div className="modal-title-div">
+          <div className="title">
+            <h2>Filter Options</h2>
+          </div>
+          <div className="extra-info">
+            <p>Select the filters you would like to apply</p>
+          </div>
         </div>
 
         {/* A img to exit out of the modal using the setModal variable */}
@@ -149,6 +155,30 @@ function FilterModal({
               />
               <span>Completed</span>
             </div>
+          </div>
+          <div className="due-date">
+            <div className="due-date-heading">
+              <h3>Due-Date</h3>
+            </div>
+            <div className="date-picker">
+              <DatePicker
+                format="MM/dd/yyyy"
+                onChange={(date) => {
+                  setSelectedDate(date.toISOString().split("T")[0]);
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="buttons">
+          <div className="reset-filters">
+            <button>Reset Filters</button>
+          </div>
+          <div className="submit-form-filters">
+            <form>
+              <button>Apply Filters</button>
+            </form>
           </div>
         </div>
       </div>

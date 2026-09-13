@@ -142,15 +142,8 @@ input:hover {
 /* END OF SEARCHBAR.JSX */
 
 /* START OF CREATETASKMODAL.JSX */
-.modal-options {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-}
-
-.submit-form-filters form {
+.submit-form-filters button,
+.buttons button {
   margin-top: 1rem;
 }
 
@@ -159,7 +152,8 @@ input:hover {
   grid-template-columns: 1fr 1fr;
 }
 
-.submit-form-filters button {
+.submit-form-filters button,
+.reset-filters button {
   padding: 1rem;
 
   border-radius: 1rem;
@@ -206,43 +200,6 @@ input:hover {
   border-radius: 0.5rem;
 }
 
-.rs-picker input {
-  padding: 1.2rem;
-
-  box-sizing: border-box;
-
-  border-radius: 0.5rem;
-
-  width: 100%;
-}
-
-.rs-picker-input-group {
-  border: 1px solid rgb(203, 5, 247) !important;
-  border-radius: 0.5rem !important;
-}
-
-.rs-picker-input-group:hover {
-  border: 1px solid rgba(189, 6, 189, 0.569) !important;
-  border-radius: 0.5rem !important;
-}
-
-.rs-picker-input-group {
-  width: 100%;
-}
-
-.rs-picker-input-group {
-  transition: none !important;
-}
-
-.rs-picker::selection {
-  border: 1px solid rgba(189, 6, 189, 0.569) !important;
-  border-radius: 0.5rem !important;
-}
-
-.rs-input {
-  color: white !important;
-}
-
 .due-date {
   justify-self: stretch;
   align-self: stretch;
@@ -286,6 +243,50 @@ textarea {
 }
 
 /* END OF CREATETASKMODAL.JSX */
+
+/* START OF TASKFILTERMODAL.jsx */
+.reset-filters button {
+  background-color: transparent;
+
+  border: 1px solid gray;
+
+  color: gray;
+
+  transition: border 0.5s ease;
+}
+
+.reset-filters button:hover {
+  background-color: transparent;
+
+  border: 1px solid rgb(79, 79, 79);
+
+  color: gray;
+}
+
+.filter-options-div .buttons {
+  display: flex;
+
+  justify-content: space-around;
+
+  gap: 10px;
+}
+.filter-options-div .due-date {
+  display: flex;
+
+  flex-direction: column;
+
+  grid-column: 1 / 3;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+
+  h3 {
+    margin-top: 0px;
+  }
+}
+
+/* END OF TASKFILTERMODAL.JSX */
 
 /* START FOR BOTH MODALS */
 input[type="checkbox"]:checked::before,
@@ -389,25 +390,54 @@ input[type="checkbox"]:hover {
   z-index: 2;
 
   border-radius: 1rem;
-
-  width: 30rem;
 }
+
+.rs-picker input {
+  padding: 1.2rem;
+
+  box-sizing: border-box;
+
+  border-radius: 0.5rem;
+
+  width: 100%;
+}
+
+.rs-picker-input-group {
+  border: 1px solid rgb(203, 5, 247) !important;
+  border-radius: 0.5rem !important;
+}
+
+.rs-picker-input-group:hover {
+  border: 1px solid rgba(189, 6, 189, 0.569) !important;
+  border-radius: 0.5rem !important;
+}
+
+.rs-picker-input-group {
+  width: 100%;
+}
+
+.rs-picker-input-group {
+  transition: none !important;
+}
+
+.rs-picker::selection {
+  border: 1px solid rgba(189, 6, 189, 0.569) !important;
+  border-radius: 0.5rem !important;
+}
+
+.rs-input {
+  color: white !important;
+}
+
 /* END FOR BOTH MODALS */
 
 /* START OF CREATETASKMODAL.JSX */
-.status-div {
-  display: flex;
-  flex-direction: column;
+.filter-options-div .modal-options {
+  display: grid;
 
-  justify-content: center;
-  align-items: flex-start;
+  grid-template-columns: 1fr 1fr;
 
-  gap: 5px;
-}
-
-.filter-options-div {
-  align-items: center;
-  justify-content: center;
+  gap: 1rem;
 }
 
 /* START OF TASKITEM.JSX */
