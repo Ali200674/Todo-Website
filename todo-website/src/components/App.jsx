@@ -26,9 +26,6 @@ function App() {
     status: [],
   }); // useState that contains filters from the filtersModal.
 
-  console.log(tasks);
-  console.log(fiters);
-
   useEffect(() => {
     async function getAllTasks() {
       // A GET request to get all tasks from database

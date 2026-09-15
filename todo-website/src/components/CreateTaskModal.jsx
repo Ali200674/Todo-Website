@@ -2,6 +2,8 @@ import { createPortal } from "react-dom";
 import close from "../assets/close.svg";
 import { useRef, useState } from "react";
 import { DatePicker } from "rsuite";
+import ErrorMessage from "./ErrorMessage";
+import { useEffect } from "react";
 
 /**
  * This component is designed to be a modal for creating a task. Accepts two parameters.
@@ -22,6 +24,20 @@ function ButtonModal({ modalVar, setModal, addTask }) {
   const descriptionValue = useRef(null);
   const [dateSelected, setSelectedDate] = useState("");
   const [radioButtonValue, setRadioButtonValue] = useState("");
+  const [isErrorOccured, setIsErrorOccured] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (!isErrorOccured) return;
+
+    let popUp;
+
+    popUp = setTimeout(() => {
+      setIsErrorOccured((value) => !value);
+    }, 5000);
+
+    return () => clearInterval(popUp);
+  }, [isErrorOccured]);
 
   // If the modalVar is false, don't open the modal or just return null
   if (!modalVar) {
@@ -34,15 +50,20 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     It also closes the modal.
   */
   async function createNewTask(event) {
-    let returnedData;
-
     event.preventDefault();
+
+    if (isErrorOccured) {
+      return;
+    }
+
+    let returnedData;
 
     // Create the task
     const task = {
       taskName: inputBarValue.current.value,
       taskDescription: descriptionValue.current.value,
-      priorityType: radioButtonValue.toUpperCase(),
+      priorityType:
+        radioButtonValue === "" ? null : radioButtonValue.toUpperCase(),
       taskCompleted: false,
       taskDueDate: dateSelected,
     };
@@ -57,7 +78,11 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     });
 
     if (!response.ok) {
-      throw new Error("Issue adding task to backend.");
+      const errorMessage = await response.json();
+
+      setErrorMessage(errorMessage.errorMessage);
+      setIsErrorOccured(!isErrorOccured);
+      return;
     }
 
     returnedData = await response.json();
@@ -75,6 +100,11 @@ function ButtonModal({ modalVar, setModal, addTask }) {
   return createPortal(
     <div className="modal-background">
       <div className="create-task-div">
+        <ErrorMessage
+          isErrorOccured={isErrorOccured}
+          errorMessage={errorMessage}
+          setIsErrorOccured={setIsErrorOccured}
+        />
         <div className="modal-title-div">
           <div className="title">
             <h2>Task Details</h2>
@@ -122,7 +152,7 @@ function ButtonModal({ modalVar, setModal, addTask }) {
           <div className="priority-main-div">
             <div className="priority-type-div">
               <div className="priority-heading">
-                <h3>Prioritys (*)</h3>
+                <h3>Prioritys</h3>
               </div>
               <div className="priority-type">
                 <div className="low-priority checkbox-div">
@@ -167,7 +197,8 @@ function ButtonModal({ modalVar, setModal, addTask }) {
                 <DatePicker
                   format="MM/dd/yyyy"
                   onChange={(date) => {
-                    setSelectedDate(date.toISOString().split("T")[0]);
+                    if (date !== null)
+                      setSelectedDate(date.toISOString().split("T")[0]);
                   }}
                 />
               </div>

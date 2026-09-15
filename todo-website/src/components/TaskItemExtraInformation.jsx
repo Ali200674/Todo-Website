@@ -1,3 +1,5 @@
+import { DatePicker } from "rsuite";
+
 /**
  * A component that represents extra information about a task
  *
@@ -6,67 +8,102 @@
  * @returns {React.ReactElement}
  */
 
-function TaskItemExtraInformation({ taskInfo, taskId }) {
+function TaskItemExtraInformation({
+  taskInfo,
+  taskId,
+  isEditing,
+  modifyExistingTask,
+}) {
   const selectedRadioButton = taskInfo.priorityType;
+  const correctDueDate = new Date(taskInfo.taskDueDate);
+  correctDueDate.setDate(correctDueDate.getDate() + 1);
 
   return (
     <>
       {/* Div that hold the extra information when the img is clicked. */}
-      <div className="extra-information">
-        <div className="task-description-div">
-          <div className="task-description-title">
-            <h3>Description</h3>
-          </div>
-          <div className="task-description">
-            <p>{taskInfo.taskDescription}</p>
-          </div>
+      <div>
+        <div className="extra-info-title">
+          <h3>Extra Information About Task</h3>
         </div>
-        <div className="right-side-information">
-          <div className="priority-div">
-            <div className="priority-heading">
-              <h3>Prioritys</h3>
+        <div className="extra-information">
+          <div className="task-description-div">
+            <div className="task-description-title">
+              <h3>Description</h3>
             </div>
-            <div className="priority-selected-div">
-              <div className="low-priority checkbox-div">
-                <input
-                  type="radio"
-                  name={taskId}
-                  value="low"
-                  disabled
-                  checked={selectedRadioButton === "LOW"}
-                />
-                <span>Low Priotity</span>
-              </div>
-
-              <div className="middle-priority checkbox-div">
-                <input
-                  type="radio"
-                  name={taskId}
-                  value="medium"
-                  disabled
-                  checked={selectedRadioButton === "MEDIUM"}
-                />
-                <span>Medium Priority</span>
-              </div>
-
-              <div className="high-priority checkbox-div">
-                <input
-                  type="radio"
-                  name={taskId}
-                  value="high"
-                  disabled
-                  checked={selectedRadioButton === "HIGH"}
-                />
-                <span>High Priority</span>
-              </div>
+            <div className="task-description">
+              <textarea
+                className={isEditing ? "not-editable" : "is-editable"}
+                disabled={isEditing}
+                defaultValue={taskInfo.taskDescription}
+                name="taskDescription"
+                onChange={modifyExistingTask}
+              ></textarea>
             </div>
           </div>
-          <div className="due-date">
-            <div className="due-date-heading">
-              <h3>Due-Date</h3>
+          <div className="right-side-information">
+            <div className="priority-div">
+              <div className="priority-heading">
+                <h3>Prioritys</h3>
+              </div>
+              <div className="priority-selected-div">
+                <div className="low-priority checkbox-div">
+                  <input
+                    className={isEditing ? "not-editable" : "is-editable"}
+                    type="radio"
+                    name={taskId}
+                    value="low"
+                    disabled={isEditing}
+                    defaultChecked={selectedRadioButton === "LOW"}
+                    onChange={modifyExistingTask}
+                  />
+                  <span>Low Priotity</span>
+                </div>
+
+                <div className="middle-priority checkbox-div">
+                  <input
+                    className={isEditing ? "not-editable" : "is-editable"}
+                    type="radio"
+                    name={taskId}
+                    value="medium"
+                    disabled={isEditing}
+                    defaultChecked={selectedRadioButton === "MEDIUM"}
+                    onChange={modifyExistingTask}
+                  />
+                  <span>Medium Priority</span>
+                </div>
+
+                <div className="high-priority checkbox-div">
+                  <input
+                    className={isEditing ? "not-editable" : "is-editable"}
+                    type="radio"
+                    name={taskId}
+                    value="high"
+                    disabled={isEditing}
+                    defaultChecked={selectedRadioButton === "HIGH"}
+                    onChange={modifyExistingTask}
+                  />
+                  <span>High Priority</span>
+                </div>
+              </div>
             </div>
-            <div className="date">
-              <span>{taskInfo.taskDueDate}</span>
+            <div className="due-date">
+              <div className="due-date-heading">
+                <h3>Due-Date</h3>
+              </div>
+              <div
+                className={
+                  isEditing
+                    ? "date-picker not-editable"
+                    : "date-picker is-editable"
+                }
+              >
+                <DatePicker
+                  format="MM/dd/yyyy"
+                  disabled={isEditing}
+                  defaultValue={correctDueDate}
+                  onChange={modifyExistingTask}
+                />
+              </div>
             </div>
           </div>
         </div>

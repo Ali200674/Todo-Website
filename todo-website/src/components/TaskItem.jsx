@@ -3,6 +3,8 @@ import { useState } from "react";
 
 import trashcan from "../assets/trash_can.svg";
 import downarrow from "../assets/down-arrow.svg";
+import editpencil from "../assets/edit-pencil.svg";
+import checkmark from "../assets/checkmark.svg";
 
 /**
  * A component that represents a single task.
@@ -20,6 +22,37 @@ function TaskItem({
   updateTaskCompleted,
 }) {
   const [isClicked, setIsClicked] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [modifiedTask, setModifiedTask] = useState({
+    taskName: taskInfo.taskName,
+    taskDescription: taskInfo.taskDescription,
+    priorityType: taskInfo.priorityType,
+    taskDueDate: taskInfo.taskDueDate,
+  });
+
+  function modifyExistingTask(event) {
+    if (event instanceof Date) {
+      setModifiedTask((prevTask) => ({
+        ...prevTask,
+        taskDueDate: event.toISOString().split("T")[0],
+      }));
+      return;
+    }
+
+    const { name, value } = event.target;
+
+    if (Number(name) === taskId) {
+      setModifiedTask((prevData) => ({
+        ...prevData,
+        priorityType: value.toUpperCase(),
+      }));
+    } else {
+      setModifiedTask((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  }
 
   async function removeTask() {
     const response = await fetch(`http://localhost:8080/api/task/${taskId}`, {
@@ -41,9 +74,7 @@ function TaskItem({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        taskCompleted: competedStatus,
-      }),
+      body: JSON.stringify(competedStatus),
     });
 
     if (!response.ok) {
@@ -51,6 +82,22 @@ function TaskItem({
     }
 
     updateTaskCompleted(taskInfo.id, competedStatus);
+  }
+
+  async function updateWholeTask() {
+    setIsEditing((value) => !value);
+
+    const response = await fetch(`http://localhost:8080/api/task/${taskId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(modifiedTask),
+    });
+
+    if (!response.ok) {
+      throw new Error("PATCH method went wrong.");
+    }
   }
 
   return (
@@ -67,17 +114,33 @@ function TaskItem({
             />
           </div>
 
-          {/* If the taskComplete variable is true, cross the h2 off, else don't*/}
+          {/* If the taskComplete variable is true, cross the title off, else don't*/}
           <div className="task-item-heading">
-            <h2 className={taskInfo.taskCompleted ? "cross-out-text" : ""}>
-              {taskInfo.taskName}
-            </h2>
+            <input
+              type="text"
+              name="taskName"
+              className={`${taskInfo.taskCompleted ? "cross-out-text" : ""} ${!isEditing ? "not-editable" : "is-editable"}`}
+              defaultValue={taskInfo.taskName}
+              disabled={!isEditing}
+              onChange={modifyExistingTask}
+            />
           </div>
         </div>
 
         {/* Div that contains the img, if clicked, it shows other information that will be added later. */}
         <div className="right-side">
           <div className="images-div">
+            <div className="edit-pencil-div">
+              <img
+                src={isEditing ? checkmark : editpencil}
+                alt="An image of a pencil"
+                onClick={
+                  !isEditing
+                    ? () => setIsEditing((value) => !value)
+                    : updateWholeTask
+                }
+              />
+            </div>
             <div className="delete-task-div">
               <img src={trashcan} alt="" onClick={removeTask} />
             </div>
@@ -92,7 +155,12 @@ function TaskItem({
           </div>
         </div>
       </div>
-      <TaskItemExtraInformation taskId={taskId} taskInfo={taskInfo} />
+      <TaskItemExtraInformation
+        taskId={taskId}
+        taskInfo={taskInfo}
+        isEditing={!isEditing}
+        modifyExistingTask={modifyExistingTask}
+      />
     </div>
   );
 }

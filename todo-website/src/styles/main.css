@@ -313,8 +313,8 @@ input[type="checkbox"] {
   justify-content: center;
 }
 
-input[type="radio"]:hover,
-input[type="checkbox"]:hover {
+.create-task-div input[type="radio"]:hover,
+.filter-options-div input[type="checkbox"]:hover {
   border: 1px solid rgb(122, 12, 122);
 }
 
@@ -390,6 +390,8 @@ input[type="checkbox"]:hover {
   z-index: 2;
 
   border-radius: 1rem;
+
+  overflow-x: hidden;
 }
 
 .rs-picker input {
@@ -402,12 +404,14 @@ input[type="checkbox"]:hover {
   width: 100%;
 }
 
-.rs-picker-input-group {
+.create-task-div .rs-picker-input-group,
+.filter-options-div .rs-picker-input-group {
   border: 1px solid rgb(203, 5, 247) !important;
   border-radius: 0.5rem !important;
 }
 
-.rs-picker-input-group:hover {
+.create-task-div .rs-picker-input-group:hover,
+.filter-options-div .rs-picker-input-group:hover {
   border: 1px solid rgba(189, 6, 189, 0.569) !important;
   border-radius: 0.5rem !important;
 }
@@ -416,11 +420,13 @@ input[type="checkbox"]:hover {
   width: 100%;
 }
 
-.rs-picker-input-group {
+.create-task-div .rs-picker-input-group,
+.filter-options-div .rs-picker-input-group {
   transition: none !important;
 }
 
-.rs-picker::selection {
+.create-task-div .rs-picker::selection,
+.filter-options-div .rs-picker::selection {
   border: 1px solid rgba(189, 6, 189, 0.569) !important;
   border-radius: 0.5rem !important;
 }
@@ -452,7 +458,7 @@ input[type="checkbox"]:hover {
   margin: 0 20px;
   margin-top: 15px;
 
-  border: 1px solid var(--primary-color);
+  border: 2px solid var(--primary-color);
 
   color: black;
 
@@ -477,11 +483,6 @@ input[type="checkbox"]:hover {
   justify-content: space-between;
 
   align-items: center;
-}
-
-/* Task name */
-.task-item-heading h2 {
-  color: var(--text-color);
 }
 
 /* For task completed checkbos to the left of the h2 */
@@ -562,10 +563,6 @@ input[type="checkbox"]:hover {
   height: auto;
 }
 
-.task-description p {
-  font-size: 1rem;
-}
-
 /* For the radio buttons  */
 .priority-selected-div {
   display: flex;
@@ -573,10 +570,6 @@ input[type="checkbox"]:hover {
   justify-content: center;
 
   gap: 20px;
-}
-
-.priority-div input[type="radio"] {
-  border: 1px solid gray;
 }
 
 .right-side-information {
@@ -587,7 +580,101 @@ input[type="checkbox"]:hover {
 
   justify-content: center;
 }
+
+.task-item-heading h2 {
+  color: var(--accent-color);
+}
+
+/* Task name */
+.task-item-heading input {
+  color: var(--text-color);
+
+  border: none;
+
+  border-radius: 0;
+
+  border-bottom: 2px solid gray;
+
+  outline: none;
+  background-color: transparent;
+
+  field-sizing: content;
+
+  max-width: 650px;
+
+  box-sizing: border-box;
+
+  font-size: 1.5em;
+
+  margin: 20px 0;
+
+  transition: border-color 0.3s ease;
+}
 /* END OF TASKITEM.JSX */
+
+/* START OF TASKITEMEXTRAINFORMATION.JSX */
+.task-description textarea {
+  font-size: 1rem;
+
+  resize: none;
+
+  width: 100%;
+  height: 175px;
+
+  background-color: transparent;
+  outline: none;
+  border: 1px solid gray;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+
+.extra-information textarea,
+.extra-information input,
+.extra-information .date-picker {
+  border: 2px solid gray;
+
+  transition: border-color 0.3s ease;
+}
+
+.extra-information .due-date .rs-input:disabled,
+.extra-information .due-date .rs-input-group[data-disabled="true"] {
+  background-color: transparent !important;
+}
+
+.extra-information .due-date .rs-picker-input-group {
+  border: none;
+}
+
+.not-editable {
+  cursor: not-allowed;
+}
+
+.is-editable {
+  border-color: var(--accent-color) !important;
+}
+
+.extra-information .date-picker {
+  width: fit-content;
+  border: 2px solid gray;
+  border-radius: 0.5rem;
+}
+
+.extra-info-title {
+  color: white;
+  display: flex;
+
+  justify-content: center;
+}
+
+.extra-info-title h3 {
+  margin: 0px;
+
+  margin-top: 10px;
+
+  font-size: 1.4rem;
+}
+
+/* END OF TASKITEMEXTRAINFORMATION.JSX */
 
 /* START OF TASKLIST.JSX */
 .task-list-container {
@@ -669,3 +756,63 @@ input[type="checkbox"]:hover {
     0 0 75px #b218ff;
 }
 /* END OF TASKPAGINATION.JSX */
+
+/* START OF ERRORMESSAGE.JSX */
+.error-message-div {
+  position: absolute;
+
+  left: 108%;
+  top: 0px;
+}
+
+.error-message {
+  position: absolute;
+
+  width: 200px;
+
+  padding: 1rem;
+
+  border-radius: 1rem;
+
+  outline: none;
+
+  color: var(--text-color);
+
+  background-color: transparent;
+
+  font-size: 1.2rem;
+
+  border: none;
+
+  background-color: var(--accent-color);
+
+  z-index: 1;
+}
+
+.error-occured {
+  animation-timing-function: ease;
+
+  animation-name: moveRightToLeft;
+
+  animation-direction: alternate;
+
+  animation-duration: 5s;
+}
+
+@keyframes moveRightToLeft {
+  0% {
+    left: 108%;
+  }
+
+  20% {
+    left: 57%;
+  }
+
+  75% {
+    left: 57%;
+  }
+
+  100% {
+    left: 108%;
+  }
+}
