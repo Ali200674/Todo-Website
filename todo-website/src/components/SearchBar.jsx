@@ -9,8 +9,6 @@ import { useRef } from "react";
 function SearchBar({ setSearchFilter }) {
   const userInput = useRef(null);
 
-  console.log(userInput.current.value);
-
   function setTaskFilter() {
     setSearchFilter(userInput.current.value);
   }

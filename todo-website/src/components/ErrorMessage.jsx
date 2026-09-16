@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 function ErrorMessage({ isErrorOccured, errorMessage, setIsErrorOccured }) {
   return (
     <div

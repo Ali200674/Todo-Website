@@ -20,12 +20,14 @@ import { useEffect } from "react";
  * @returns {React.ReactElement}
  */
 function ButtonModal({ modalVar, setModal, addTask }) {
-  const inputBarValue = useRef(null);
+  const [inputTaskTitleValue, setInputTaskTitleValue] = useState("");
   const descriptionValue = useRef(null);
   const [dateSelected, setSelectedDate] = useState("");
   const [radioButtonValue, setRadioButtonValue] = useState("");
   const [isErrorOccured, setIsErrorOccured] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  console.log(inputTaskTitleValue);
 
   useEffect(() => {
     if (!isErrorOccured) return;
@@ -60,7 +62,7 @@ function ButtonModal({ modalVar, setModal, addTask }) {
 
     // Create the task
     const task = {
-      taskName: inputBarValue.current.value,
+      taskName: inputTaskTitleValue,
       taskDescription: descriptionValue.current.value,
       priorityType:
         radioButtonValue === "" ? null : radioButtonValue.toUpperCase(),
@@ -90,6 +92,9 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     // Add the task and close out the modal.
     addTask((tasks) => [...tasks, returnedData]);
     setModal((isActive) => !isActive);
+    setInputTaskTitleValue("");
+
+    console.log(returnedData);
   }
 
   // Changes the radio button value
@@ -132,7 +137,9 @@ function ButtonModal({ modalVar, setModal, addTask }) {
               <input
                 type="text"
                 placeholder="Task Name..."
-                ref={inputBarValue}
+                onChange={(event) => {
+                  setInputTaskTitleValue(event.target.value);
+                }}
               />
             </div>
           </div>
