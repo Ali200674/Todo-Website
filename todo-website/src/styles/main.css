@@ -1,4 +1,720 @@
-/* START OF HEADER.JSX */
+@media (min-width: 721px) {
+  header {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* For the header that holds the h1 title */
+  .header-div {
+    font-size: 2.4rem;
+
+    color: var(--primary-color);
+
+    h1 {
+      margin-bottom: 10px;
+    }
+  }
+
+  .search-bar-div {
+    display: flex;
+
+    justify-content: center;
+    align-items: stretch;
+
+    gap: 2rem;
+
+    margin-top: 4rem;
+  }
+
+  /* For the search bar input field */
+  .search-bar-div input[type="text"] {
+    padding: 1.2rem;
+
+    outline: none;
+
+    background-color: transparent;
+
+    border: 1px solid purple;
+
+    border-radius: 2rem;
+
+    width: 25rem;
+
+    color: var(--text-color);
+
+    font-size: 1.2rem;
+  }
+
+  .search-bar img {
+    position: absolute;
+
+    border-radius: 15px;
+
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+
+    padding: 5px;
+
+    cursor: pointer;
+
+    width: 20px;
+
+    height: 20px;
+
+    border: 1px solid transparent;
+  }
+
+  .filter-options-div,
+  .create-task-div {
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    padding: 2rem;
+
+    background-color: rgb(45, 8, 75);
+
+    color: white;
+
+    z-index: 2;
+
+    border-radius: 1rem;
+
+    overflow-x: hidden;
+  }
+
+  .priority-selected-div {
+    display: flex;
+
+    justify-content: start;
+
+    gap: 20px;
+  }
+
+  .priority-main-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .create-task-div .submit-form-filters {
+    display: flex;
+
+    justify-content: right;
+  }
+
+  .filter-options-div .buttons {
+    display: flex;
+
+    justify-content: space-around;
+
+    gap: 10px;
+  }
+
+  /* START OF ERRORMESSAGE.JSX */
+  .error-message-div {
+    position: absolute;
+
+    left: 101%;
+    top: 0px;
+  }
+
+  .error-message {
+    position: absolute;
+
+    width: 200px;
+
+    padding: 1rem;
+
+    border-radius: 1rem;
+
+    outline: none;
+
+    color: var(--text-color);
+
+    background-color: transparent;
+
+    font-size: 1.2rem;
+
+    border: none;
+
+    background-color: var(--accent-color);
+
+    z-index: 1;
+  }
+
+  .error-occured {
+    animation-timing-function: ease;
+
+    animation-name: moveRightToLeft;
+
+    animation-direction: alternate;
+
+    animation-duration: 5s;
+  }
+
+  @keyframes moveRightToLeft {
+    0% {
+      left: 101%;
+    }
+
+    20% {
+      left: 57%;
+    }
+
+    75% {
+      left: 57%;
+    }
+
+    100% {
+      left: 101%;
+    }
+  }
+  /* END OF ERRORMESSAGE.JSX */
+
+  /* For extra information about the task like description and the type of priority. Everything below is under this class */
+  .extra-information {
+    color: white;
+
+    position: relative;
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 1.2rem;
+
+    gap: 20px;
+  }
+
+  .task-description-div {
+    width: 30rem;
+    height: auto;
+  }
+
+  .task-list-container {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    color: var(--text-color);
+
+    margin: 0 auto;
+
+    margin-top: 1.8rem;
+
+    max-width: 1200px;
+
+    min-width: 600px;
+
+    min-height: 650px;
+  }
+
+  .right-side-information {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2rem;
+
+    justify-content: center;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+  header {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* For the header that holds the h1 title */
+  .header-div {
+    font-size: 2.4rem;
+
+    color: var(--primary-color);
+
+    text-align: center;
+
+    h1 {
+      margin-bottom: 10px;
+    }
+  }
+
+  .search-bar-div {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: stretch;
+
+    gap: 1rem;
+
+    margin-top: 4rem;
+  }
+
+  /* For the search bar input field */
+  .search-bar-div input[type="text"] {
+    padding: 1.2rem;
+
+    outline: none;
+
+    background-color: transparent;
+
+    border: 1px solid purple;
+
+    border-radius: 2rem;
+
+    width: 25rem;
+
+    color: var(--text-color);
+
+    font-size: 1.2rem;
+  }
+
+  .search-bar img {
+    position: absolute;
+
+    border-radius: 15px;
+
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+
+    padding: 5px;
+
+    cursor: pointer;
+
+    width: 20px;
+
+    height: 20px;
+
+    border: 1px solid transparent;
+  }
+
+  .filter-options-div,
+  .create-task-div {
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    padding: 2rem;
+
+    background-color: rgb(45, 8, 75);
+
+    color: white;
+
+    z-index: 2;
+
+    border-radius: 1rem;
+
+    overflow-x: hidden;
+
+    width: 60%;
+  }
+
+  .priority-main-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .create-task-div .submit-form-filters {
+    display: flex;
+
+    justify-content: right;
+  }
+
+  .filter-options-div .buttons {
+    display: flex;
+
+    justify-content: space-around;
+
+    gap: 10px;
+  }
+
+  /* START OF ERRORMESSAGE.JSX */
+  .error-message-div {
+    position: absolute;
+
+    left: 101%;
+    top: 0px;
+  }
+
+  .error-message {
+    position: absolute;
+
+    width: 200px;
+
+    padding: 1rem;
+
+    border-radius: 1rem;
+
+    outline: none;
+
+    color: var(--text-color);
+
+    background-color: transparent;
+
+    font-size: 1.2rem;
+
+    border: none;
+
+    background-color: var(--accent-color);
+
+    z-index: 1;
+  }
+
+  .error-occured {
+    animation-timing-function: ease;
+
+    animation-name: moveRightToLeft;
+
+    animation-direction: alternate;
+
+    animation-duration: 5s;
+  }
+
+  @keyframes moveRightToLeft {
+    0% {
+      left: 101%;
+    }
+
+    20% {
+      left: 51%;
+    }
+
+    75% {
+      left: 51%;
+    }
+
+    100% {
+      left: 101%;
+    }
+  }
+  /* END OF ERRORMESSAGE.JSX */
+
+  /* For extra information about the task like description and the type of priority. Everything below is under this class */
+  .extra-information {
+    box-sizing: border-box;
+
+    color: white;
+
+    position: relative;
+
+    justify-content: space-between;
+
+    margin-top: 1.2rem;
+
+    overflow-y: scroll;
+
+    height: 300px;
+
+    padding: 10px;
+    padding-bottom: 30px;
+
+    gap: 20px;
+  }
+
+  .extra-information::-webkit-scrollbar {
+    display: none;
+  }
+
+  .task-description-div {
+    width: 100%;
+  }
+
+  .due-date {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+  }
+
+  .task-description-div {
+    flex: 3 0 0;
+  }
+
+  .right-side-information {
+    flex: 1 0 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2rem;
+
+    justify-content: center;
+  }
+
+  .priority-selected-div {
+    display: flex;
+
+    justify-content: start;
+
+    gap: 20px;
+  }
+
+  .task-list-container {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    color: var(--text-color);
+
+    margin: 0 auto;
+
+    margin-top: 1.8rem;
+
+    max-width: 90%;
+
+    min-height: 650px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+  }
+
+  .header-div {
+    font-size: 1.8rem;
+
+    color: var(--primary-color);
+
+    text-align: center;
+
+    h1 {
+      margin-bottom: 10px;
+    }
+  }
+
+  /* For the search bar input field */
+  .search-bar-div {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: stretch;
+
+    gap: 2rem;
+
+    margin-top: 4rem;
+  }
+
+  /* For the search bar input field */
+  .search-bar-div input[type="text"] {
+    padding: 1.2rem;
+
+    outline: none;
+
+    background-color: transparent;
+
+    border: 1px solid purple;
+
+    border-radius: 2rem;
+
+    width: calc(100% - 25px);
+
+    color: var(--text-color);
+
+    font-size: 1rem;
+  }
+
+  .search-bar form {
+    display: flex;
+
+    justify-content: center;
+  }
+
+  .search-bar img {
+    position: absolute;
+
+    border-radius: 15px;
+
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+
+    padding: 5px;
+
+    cursor: pointer;
+
+    width: 20px;
+
+    height: 20px;
+
+    border: 1px solid transparent;
+  }
+
+  .filter-options-div,
+  .create-task-div {
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    padding: 2rem;
+
+    background-color: rgb(45, 8, 75);
+
+    color: white;
+
+    z-index: 2;
+
+    border-radius: 1rem;
+
+    overflow-x: hidden;
+
+    width: 70vw;
+  }
+
+  .create-task-div .submit-form-filters {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    margin: 0 auto;
+
+    width: calc(100% - 40px);
+  }
+
+  .create-task-div .submit-form-filters form {
+    margin-top: 1rem;
+  }
+
+  .create-task-div .submit-form-filters form button {
+    width: 100%;
+  }
+
+  .priority-type {
+    display: flex;
+
+    gap: 20px;
+  }
+
+  .filter-options-div .buttons {
+    display: flex;
+
+    justify-content: space-around;
+
+    gap: 10px;
+  }
+
+  /* START OF ERRORMESSAGE.JSX */
+  .error-message-div {
+    position: absolute;
+
+    left: 101%;
+    top: 0px;
+  }
+
+  .error-message {
+    position: absolute;
+
+    width: 200px;
+
+    padding: 1rem;
+
+    border-radius: 1rem;
+
+    outline: none;
+
+    color: var(--text-color);
+
+    background-color: transparent;
+
+    font-size: 1.2rem;
+
+    border: none;
+
+    background-color: var(--accent-color);
+
+    z-index: 1;
+  }
+
+  .error-occured {
+    animation-timing-function: ease;
+
+    animation-name: moveRightToLeft;
+
+    animation-direction: alternate;
+
+    animation-duration: 5s;
+  }
+
+  @keyframes moveRightToLeft {
+    0% {
+      left: 101%;
+    }
+
+    20% {
+      left: 36%;
+    }
+
+    75% {
+      left: 36%;
+    }
+
+    100% {
+      left: 101%;
+    }
+  }
+  /* END OF ERRORMESSAGE.JSX */
+
+  /* For extra information about the task like description and the type of priority. Everything below is under this class */
+  .extra-info-div {
+    color: white;
+
+    position: relative;
+
+    margin-top: 1.2rem;
+
+    overflow-y: scroll;
+
+    height: 300px;
+  }
+
+  .extra-info-div::-webkit-scrollbar {
+    display: none;
+  }
+
+  .task-description-div {
+    width: 100%;
+  }
+}
+
+/* CSS that applies to everything (screen, tablet, desktop) */
+
 /* Font that will be used for this website */
 * {
   font-family: "Google Sans Flex", sans-serif;
@@ -19,160 +735,13 @@
   --secondary-color: #7b215b;
   --accent-color: #d45e89;
 
+  /* To override certain variables for calendar */
   --rs-input-bg: transparent !important;
   --rs-focus-ring-color: none !important;
 }
 
 body {
   background-color: #110719;
-}
-
-header {
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-}
-
-/* For the header that holds the h1 title */
-.header-div {
-  font-size: 2.4rem;
-
-  color: var(--primary-color);
-
-  h1 {
-    margin-bottom: 10px;
-  }
-}
-
-/* For the p under the h1 title */
-.tagline-div p {
-  font-size: 1.4rem;
-
-  margin-top: 0.5rem;
-
-  color: var(--text-color);
-}
-
-/* END OF HEADER.JSX */
-
-/* START OF SEARCHBAR.JSX */
-/* For the whole div that wrapps everything in the SearchBar.jsx */
-.search-bar-div {
-  display: flex;
-
-  justify-content: center;
-  align-items: stretch;
-
-  gap: 2rem;
-
-  margin-top: 4rem;
-}
-
-/* For the search bar input field */
-.search-bar-div input[type="text"] {
-  padding: 1.2rem;
-
-  outline: none;
-
-  background-color: transparent;
-
-  border: 1px solid purple;
-
-  border-radius: 2rem;
-
-  width: 25rem;
-
-  color: var(--text-color);
-
-  font-size: 1.2rem;
-
-  /* For the magnifying glass svg on the input field */
-  background-image: url("../assets/search-bar-logo.svg");
-  background-repeat: no-repeat;
-  background-position: center right 25px;
-  background-size: 1.5rem;
-}
-
-input:hover {
-  border: 1px solid rgba(128, 0, 128, 0.569);
-}
-
-.filters-task,
-.create-task {
-  padding: 1rem;
-
-  border-radius: 1rem;
-
-  outline: none;
-
-  border: none;
-
-  cursor: pointer;
-
-  color: var(--text-color);
-
-  background-color: transparent;
-
-  font-size: 1.2rem;
-}
-
-/* For the button in filters-task and create task */
-.create-task {
-  background-color: var(--accent-color);
-
-  transition: background-color 0.5s ease;
-}
-
-.filters-task {
-  background-color: var(--secondary-color);
-
-  transition: background-color 0.5s ease;
-}
-
-.create-task:hover {
-  background-color: #a5486a;
-}
-
-.filters-task:hover {
-  background-color: #631a49;
-}
-/* END OF SEARCHBAR.JSX */
-
-/* START OF CREATETASKMODAL.JSX */
-.submit-form-filters button,
-.buttons button {
-  margin-top: 1rem;
-}
-
-.priority-main-div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.submit-form-filters button,
-.reset-filters button {
-  padding: 1rem;
-
-  border-radius: 1rem;
-
-  outline: none;
-
-  cursor: pointer;
-
-  color: var(--text-color);
-
-  background-color: transparent;
-
-  font-size: 1.2rem;
-
-  border: none;
-
-  background-color: var(--accent-color);
-
-  transition: background-color 0.5s ease;
 }
 
 .submit-form-filters button:hover {
@@ -184,6 +753,7 @@ input:hover {
   border: 1px solid rgba(189, 6, 189, 0.569);
 }
 
+/* Input field on the create task modal */
 .input-field input {
   padding: 1.2rem;
 
@@ -200,19 +770,52 @@ input:hover {
   border-radius: 0.5rem;
 }
 
-.due-date {
-  justify-self: stretch;
-  align-self: stretch;
+.submit-form-filters button,
+.reset-filters button {
+  padding: 1rem;
 
-  width: 100%;
+  border-radius: 1rem;
+
+  outline: none;
+
+  cursor: pointer;
+
+  background-color: transparent;
+
+  font-size: 1.2rem;
 }
 
+.submit-form-filters button {
+  border: none;
+
+  color: var(--text-color);
+
+  background-color: var(--accent-color);
+
+  transition: background-color 0.5s ease;
+}
+
+.reset-filters button {
+  background-color: transparent;
+
+  border: 1px solid gray;
+
+  color: gray;
+
+  transition: border 0.5s ease;
+}
+
+.reset-filters button:hover {
+  background-color: transparent;
+
+  border: 1px solid rgb(79, 79, 79);
+
+  color: gray;
+}
+
+/* The extra information on both modals */
 .modal-title-div p {
   color: rgba(255, 255, 255, 0.465);
-}
-
-.input-field-div {
-  text-align: left;
 }
 
 .description-div textarea {
@@ -242,34 +845,6 @@ textarea {
   font-size: 1rem;
 }
 
-/* END OF CREATETASKMODAL.JSX */
-
-/* START OF TASKFILTERMODAL.jsx */
-.reset-filters button {
-  background-color: transparent;
-
-  border: 1px solid gray;
-
-  color: gray;
-
-  transition: border 0.5s ease;
-}
-
-.reset-filters button:hover {
-  background-color: transparent;
-
-  border: 1px solid rgb(79, 79, 79);
-
-  color: gray;
-}
-
-.filter-options-div .buttons {
-  display: flex;
-
-  justify-content: space-around;
-
-  gap: 10px;
-}
 .filter-options-div .due-date {
   display: flex;
 
@@ -286,9 +861,37 @@ textarea {
   }
 }
 
-/* END OF TASKFILTERMODAL.JSX */
+.create-task-div .rs-picker-input-group,
+.filter-options-div .rs-picker-input-group {
+  border: 1px solid rgb(203, 5, 247) !important;
+  border-radius: 0.5rem !important;
+}
 
-/* START FOR BOTH MODALS */
+.create-task-div .rs-picker-input-group:hover,
+.filter-options-div .rs-picker-input-group:hover {
+  border: 1px solid rgba(189, 6, 189, 0.569) !important;
+  border-radius: 0.5rem !important;
+}
+
+.rs-picker-input-group {
+  width: 100%;
+}
+
+.create-task-div .rs-picker-input-group,
+.filter-options-div .rs-picker-input-group {
+  transition: none !important;
+}
+
+.create-task-div .rs-picker::selection,
+.filter-options-div .rs-picker::selection {
+  border: 1px solid rgba(189, 6, 189, 0.569) !important;
+  border-radius: 0.5rem !important;
+}
+
+.rs-input {
+  color: white !important;
+}
+
 input[type="checkbox"]:checked::before,
 input[type="radio"]:checked::before {
   font-size: 1.5rem;
@@ -330,12 +933,6 @@ input[type="checkbox"] {
   font-size: 2rem;
 }
 
-.create-task-div .submit-form-filters {
-  display: flex;
-
-  justify-content: right;
-}
-
 .checkbox-div {
   display: flex;
 
@@ -370,30 +967,6 @@ input[type="checkbox"] {
   z-index: 1;
 }
 
-.filter-options-div,
-.create-task-div {
-  display: flex;
-  flex-direction: column;
-
-  position: fixed;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  padding: 2rem;
-
-  background-color: rgb(45, 8, 75);
-
-  color: white;
-
-  z-index: 2;
-
-  border-radius: 1rem;
-
-  overflow-x: hidden;
-}
-
 .rs-picker input {
   padding: 1.2rem;
 
@@ -404,40 +977,6 @@ input[type="checkbox"] {
   width: 100%;
 }
 
-.create-task-div .rs-picker-input-group,
-.filter-options-div .rs-picker-input-group {
-  border: 1px solid rgb(203, 5, 247) !important;
-  border-radius: 0.5rem !important;
-}
-
-.create-task-div .rs-picker-input-group:hover,
-.filter-options-div .rs-picker-input-group:hover {
-  border: 1px solid rgba(189, 6, 189, 0.569) !important;
-  border-radius: 0.5rem !important;
-}
-
-.rs-picker-input-group {
-  width: 100%;
-}
-
-.create-task-div .rs-picker-input-group,
-.filter-options-div .rs-picker-input-group {
-  transition: none !important;
-}
-
-.create-task-div .rs-picker::selection,
-.filter-options-div .rs-picker::selection {
-  border: 1px solid rgba(189, 6, 189, 0.569) !important;
-  border-radius: 0.5rem !important;
-}
-
-.rs-input {
-  color: white !important;
-}
-
-/* END FOR BOTH MODALS */
-
-/* START OF CREATETASKMODAL.JSX */
 .filter-options-div .modal-options {
   display: grid;
 
@@ -446,7 +985,6 @@ input[type="checkbox"] {
   gap: 1rem;
 }
 
-/* START OF TASKITEM.JSX */
 .task-item-div {
   position: relative;
 
@@ -543,43 +1081,15 @@ input[type="checkbox"] {
   text-decoration: line-through;
 }
 
-/* For extra information about the task like description and the type of priority. Everything below is under this class */
-.extra-information {
-  color: white;
-
-  position: relative;
-  display: flex;
-
-  justify-content: space-between;
-
-  margin-top: 1.2rem;
-}
-
 /* For the description area */
 
 /* The div that contains the h3 heading and textarea */
-.task-description-div {
+/* .task-description-div {
   width: 30rem;
   height: auto;
-}
+} */
 
 /* For the radio buttons  */
-.priority-selected-div {
-  display: flex;
-
-  justify-content: center;
-
-  gap: 20px;
-}
-
-.right-side-information {
-  display: flex;
-  flex-direction: column;
-
-  gap: 2rem;
-
-  justify-content: center;
-}
 
 .task-item-heading h2 {
   color: var(--accent-color);
@@ -677,24 +1187,6 @@ input[type="checkbox"] {
 /* END OF TASKITEMEXTRAINFORMATION.JSX */
 
 /* START OF TASKLIST.JSX */
-.task-list-container {
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-
-  color: var(--text-color);
-
-  margin: 0 auto;
-
-  margin-top: 1.8rem;
-
-  max-width: 1200px;
-
-  /* border: 1px solid purple; */
-
-  min-height: 650px;
-}
 
 /* If there is no tasks, then we say it's empty */
 .empty-container {
@@ -703,9 +1195,6 @@ input[type="checkbox"] {
   text-align: center;
 }
 
-/* END OF TASKLIST.JSX */
-
-/* START OF TASKPAGINATION.JSX */
 .pagination-div {
   display: flex;
   flex-direction: row;
@@ -757,63 +1246,70 @@ input[type="checkbox"] {
 }
 /* END OF TASKPAGINATION.JSX */
 
-/* START OF ERRORMESSAGE.JSX */
-.error-message-div {
-  position: absolute;
+/* For the p under the h1 title */
+.tagline-div p {
+  font-size: 1.4rem;
 
-  left: 108%;
-  top: 0px;
+  margin-top: 0.5rem;
+
+  color: var(--text-color);
 }
 
-.error-message {
-  position: absolute;
+.search-bar {
+  position: relative;
+}
 
-  width: 200px;
+.search-bar img:hover {
+  border: 1px solid gray;
 
+  border-radius: 15px;
+}
+
+.search-bar form input:hover {
+  border: 1px solid rgba(128, 0, 128, 0.569);
+}
+
+.filters-task,
+.create-task {
   padding: 1rem;
 
   border-radius: 1rem;
 
   outline: none;
 
+  border: none;
+
+  cursor: pointer;
+
   color: var(--text-color);
 
   background-color: transparent;
 
   font-size: 1.2rem;
+}
 
-  border: none;
-
+/* For the button in filters-task and create task */
+.create-task {
   background-color: var(--accent-color);
 
-  z-index: 1;
+  transition: background-color 0.5s ease;
 }
 
-.error-occured {
-  animation-timing-function: ease;
+.filters-task {
+  background-color: var(--secondary-color);
 
-  animation-name: moveRightToLeft;
-
-  animation-direction: alternate;
-
-  animation-duration: 5s;
+  transition: background-color 0.5s ease;
 }
 
-@keyframes moveRightToLeft {
-  0% {
-    left: 108%;
-  }
-
-  20% {
-    left: 57%;
-  }
-
-  75% {
-    left: 57%;
-  }
-
-  100% {
-    left: 108%;
-  }
+.create-task:hover {
+  background-color: #a5486a;
 }
-/* END OF ERRORMESSAGE.JSX */
+
+.filters-task:hover {
+  background-color: #631a49;
+}
+
+.submit-form-filters button,
+.buttons button {
+  margin-top: 1rem;
+}
