@@ -21,7 +21,7 @@ function TaskItemExtraInformation({
   return (
     <>
       {/* Div that hold the extra information when the img is clicked. */}
-      <div>
+      <div className="extra-info-div">
         <div className="extra-info-title">
           <h3>Extra Information About Task</h3>
         </div>
@@ -56,7 +56,7 @@ function TaskItemExtraInformation({
                     defaultChecked={selectedRadioButton === "LOW"}
                     onChange={modifyExistingTask}
                   />
-                  <span>Low Priotity</span>
+                  <span>Low</span>
                 </div>
 
                 <div className="middle-priority checkbox-div">
@@ -69,7 +69,7 @@ function TaskItemExtraInformation({
                     defaultChecked={selectedRadioButton === "MEDIUM"}
                     onChange={modifyExistingTask}
                   />
-                  <span>Medium Priority</span>
+                  <span>Medium</span>
                 </div>
 
                 <div className="high-priority checkbox-div">
@@ -82,7 +82,7 @@ function TaskItemExtraInformation({
                     defaultChecked={selectedRadioButton === "HIGH"}
                     onChange={modifyExistingTask}
                   />
-                  <span>High Priority</span>
+                  <span>High</span>
                 </div>
               </div>
             </div>

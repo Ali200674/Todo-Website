@@ -67,7 +67,8 @@ function TaskItem({
   }
 
   async function setTaskAsCompleted() {
-    const competedStatus = !taskInfo.taskCompleted;
+    const competedStatus =
+      taskInfo.taskStatus === "ACTIVE" ? "COMPLETED" : "ACTIVE";
 
     const response = await fetch(`http://localhost:8080/api/task/${taskId}`, {
       method: "PATCH",
@@ -110,7 +111,7 @@ function TaskItem({
             <input
               type="checkbox"
               onChange={setTaskAsCompleted}
-              checked={taskInfo.taskCompleted}
+              checked={taskInfo.taskStatus === "ACTIVE"}
             />
           </div>
 
@@ -119,7 +120,7 @@ function TaskItem({
             <input
               type="text"
               name="taskName"
-              className={`${taskInfo.taskCompleted ? "cross-out-text" : ""} ${!isEditing ? "not-editable" : "is-editable"}`}
+              className={`${taskInfo.taskStatus === "COMPLETED" ? "" : "cross-out-text"} ${!isEditing ? "not-editable" : "is-editable"}`}
               defaultValue={taskInfo.taskName}
               disabled={!isEditing}
               onChange={modifyExistingTask}

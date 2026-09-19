@@ -11,11 +11,10 @@ import { DatePicker } from "rsuite";
  * @param {Function} setPriorityValues A function to change the
  * @returns {React.ReactElement}
  */
-function FilterModal({
+function TaskFilterModal({
   modalVar,
   setModal,
-  setFilters,
-  setPriorityValues,
+  setTaskModalFilters,
   filterValues,
 }) {
   // If the modalVar is false, don't open the modal or just return null
@@ -27,44 +26,32 @@ function FilterModal({
   function rememberUserChoosenFilter(event) {
     const { value, name } = event.target;
 
-    // Drill down to which filter array and change it's value (boolean)
-    setPriorityValues((values) => ({
+    setTaskModalFilters((values) => ({
       ...values,
-      [name]: {
-        ...values[name],
-        [value]: !values[name][value],
-      },
+      [name]: values[name].includes(value)
+        ? values[name].filter((variable) => variable !== value)
+        : [...values[name], value],
     }));
   }
 
-  // Method to add a filter the user clicked on to the filters object in App.jsx
-  function addFilterPriority(event) {
-    rememberUserChoosenFilter(event);
+  async function getAllTasksBasedOnFilters(event) {
+    event.preventDefault();
 
-    if (event.target.name === "priority") {
-      setFilters((value) => ({
-        ...value,
-        priorities: value.priorities.includes(event.target.value)
-          ? value.priorities.filter(
-              (priority) => priority !== event.target.value,
-            )
-          : [...value.priorities, event.target.value],
-      }));
-    } else {
-      const statusConversion = {
-        active: false,
-        completed: true,
-      };
+    const filteringObject = {
+      taskPriorityList: filterValues.priority,
+      taskStatuses: filterValues.status,
+    };
 
-      setFilters((value) => ({
-        ...value,
-        status: value.status.includes(statusConversion[event.target.value])
-          ? value.status.filter(
-              (status) => status !== statusConversion[event.target.value],
-            )
-          : [...value.status, statusConversion[event.target.value]],
-      }));
-    }
+    if (filterValues.dueDate !== null)
+      filteringObject.taskDueDate = filterValues.dueDate;
+
+    const filters = new URLSearchParams(filteringObject);
+
+    const response = await fetch(
+      `http://localhost:8080/api/tasks/filters?${filters}`,
+    );
+
+    const data = await response.json();
   }
 
   // Using a createPortal to show this outside of the root div
@@ -98,33 +85,33 @@ function FilterModal({
               <input
                 type="checkbox"
                 name="priority"
-                value="low"
-                checked={filterValues.priority.low}
-                onChange={addFilterPriority}
+                value="LOW"
+                checked={filterValues.priority.includes("LOW")}
+                onChange={rememberUserChoosenFilter}
               />
-              <span>Low Priotity</span>
+              <span>Low</span>
             </div>
 
             <div className="middle-priority checkbox-div">
               <input
                 type="checkbox"
                 name="priority"
-                value="medium"
-                checked={filterValues.priority.medium}
-                onChange={addFilterPriority}
+                value="MEDIUM"
+                checked={filterValues.priority.includes("MEDIUM")}
+                onChange={rememberUserChoosenFilter}
               />
-              <span>Medium Priority</span>
+              <span>Medium</span>
             </div>
 
             <div className="high-priority checkbox-div">
               <input
                 type="checkbox"
                 name="priority"
-                value="high"
-                checked={filterValues.priority.high}
-                onChange={addFilterPriority}
+                value="HIGH"
+                checked={filterValues.priority.includes("HIGH")}
+                onChange={rememberUserChoosenFilter}
               />
-              <span>High Priority</span>
+              <span>High</span>
             </div>
           </div>
 
@@ -138,9 +125,9 @@ function FilterModal({
               <input
                 type="checkbox"
                 name="status"
-                value="active"
-                checked={filterValues.status.active}
-                onChange={addFilterPriority}
+                value="ACTIVE"
+                checked={filterValues.status.includes("ACTIVE")}
+                onChange={rememberUserChoosenFilter}
               />
               <span>Active</span>
             </div>
@@ -149,9 +136,9 @@ function FilterModal({
               <input
                 type="checkbox"
                 name="status"
-                value="completed"
-                checked={filterValues.status.completed}
-                onChange={addFilterPriority}
+                value="COMPLETED"
+                checked={filterValues.status.includes("COMPLETED")}
+                onChange={rememberUserChoosenFilter}
               />
               <span>Completed</span>
             </div>
@@ -164,8 +151,13 @@ function FilterModal({
               <DatePicker
                 format="MM/dd/yyyy"
                 onChange={(date) => {
-                  setSelectedDate(date.toISOString().split("T")[0]);
+                  // setSelectedDate(date.toISOString().split("T")[0]);
+                  setTaskModalFilters((values) => ({
+                    ...values,
+                    dueDate: date,
+                  }));
                 }}
+                value={filterValues.dueDate}
               />
             </div>
           </div>
@@ -173,10 +165,20 @@ function FilterModal({
 
         <div className="buttons">
           <div className="reset-filters">
-            <button>Reset Filters</button>
+            <button
+              onClick={() => {
+                setTaskModalFilters({
+                  priority: { low: false, medium: false, high: false },
+                  status: { active: false, completed: false },
+                  dueDate: null,
+                });
+              }}
+            >
+              Reset Filters
+            </button>
           </div>
           <div className="submit-form-filters">
-            <form>
+            <form onSubmit={getAllTasksBasedOnFilters}>
               <button>Apply Filters</button>
             </form>
           </div>
@@ -187,4 +189,4 @@ function FilterModal({
   );
 }
 
-export default FilterModal;
+export default TaskFilterModal;

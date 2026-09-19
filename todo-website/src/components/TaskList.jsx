@@ -50,7 +50,7 @@ function TaskList({
         task.id === taskId
           ? {
               ...task,
-              taskCompleted: completionStatus,
+              taskStatus: completionStatus,
             }
           : task,
       ),
@@ -66,27 +66,15 @@ function TaskList({
         </div>
       ) : (
         // Else, display whatever tasks there is and filter through them if the user typed in something in the search bar.
-        getAllTasksOnPage()
-          .filter((t) => t.taskName.includes(searchFilter)) // First, if the user used the search bar, filter through that
-          .filter((task) =>
-            filters.priorities.length === 0
-              ? task
-              : filters.priorities.includes(task.priorityType.toLowerCase()),
-          )
-          .filter((task) =>
-            filters.status.length === 0
-              ? task
-              : filters.status.includes(task.taskCompleted),
-          )
-          .map((task, key) => (
-            <TaskItem
-              key={key}
-              taskId={task.id}
-              taskInfo={task}
-              removeCurrentTask={removeSpecificTask}
-              updateTaskCompleted={updateTaskCompleted}
-            />
-          )) // Third, create a TaskItem component and pass in the taskId, taskInfo, removing a task and updating that task
+        tasks.map((task, key) => (
+          <TaskItem
+            key={key}
+            taskId={task.id}
+            taskInfo={task}
+            removeCurrentTask={removeSpecificTask}
+            updateTaskCompleted={updateTaskCompleted}
+          />
+        )) // Third, create a TaskItem component and pass in the taskId, taskInfo, removing a task and updating that task
       )}
     </div>
   );

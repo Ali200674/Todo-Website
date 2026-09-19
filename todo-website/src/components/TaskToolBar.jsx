@@ -11,35 +11,35 @@ import TaskFilterModal from "./TaskFilterModal.jsx";
  * @param {Function} setSearchFilter A function that sets the search filter for the search bar from App.jsx
  * @returns {React.ReactNode}
  */
-function TaskToolBar({ addTask, setSearchFilter, setFilters }) {
+function TaskToolBar({ addTask, setSearchFilter }) {
   // Two useStates. One for the filters button and the other for the create task button
-  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showTaskFilterModal, setShowTaskFilterModal] = useState(false);
   const [showButtonModal, setShowButtonModal] = useState(false);
 
-  const [priorityValue, setPriorityValues] = useState({
-    priority: { low: false, medium: false, high: false },
-    status: { active: false, completed: false },
+  const [taskModalFilters, setTaskModalFilters] = useState({
+    priority: [],
+    status: [],
+    dueDate: null,
   }); // useState for remembering what kind of priority value(s) the user has clicked
 
   return (
     <div className="search-bar-div">
       {/* Pass down the setSearchFilter to the SearchBar component */}
-      <SearchBar setSearchFilter={setSearchFilter} />
+      <SearchBar setSearchFilter={setSearchFilter} addTask={addTask} />
 
       {/* Buttons near the input field */}
       {/* Button to open the FiltersModal component */}
       <button
         className="filters-task"
-        onClick={() => setShowFilterModal((p) => !p)}
+        onClick={() => setShowTaskFilterModal((p) => !p)}
       >
         Filters
       </button>
       <TaskFilterModal
-        setModal={setShowFilterModal}
-        modalVar={showFilterModal}
-        setFilters={setFilters}
-        filterValues={priorityValue}
-        setPriorityValues={setPriorityValues}
+        setModal={setShowTaskFilterModal}
+        modalVar={showTaskFilterModal}
+        filterValues={taskModalFilters}
+        setTaskModalFilters={setTaskModalFilters}
       />
 
       {/* Button to open the AddTaskModal component */}

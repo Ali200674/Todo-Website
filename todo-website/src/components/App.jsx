@@ -21,10 +21,6 @@ function App() {
   const [tasks, setTasksModify] = useState([]); // useState for adding and modifying the array
   const [searchFilter, setSearchFilter] = useState(""); // useState for setting the search filter
   const [currentPage, setCurrentPage] = useState(1); // useState for setting the current page
-  const [fiters, setFilters] = useState({
-    priorities: [],
-    status: [],
-  }); // useState that contains filters from the filtersModal.
 
   useEffect(() => {
     async function getAllTasks() {
@@ -46,18 +42,13 @@ function App() {
       {/* For the header */}
       <Header />
 
-      <TaskToolBar
-        addTask={setTasksModify}
-        setSearchFilter={setSearchFilter}
-        setFilters={setFilters}
-      />
+      <TaskToolBar addTask={setTasksModify} setSearchFilter={setSearchFilter} />
 
       <TaskList
         tasks={tasks}
         searchFilter={searchFilter}
         setTasksModify={setTasksModify}
         currentPage={currentPage}
-        filters={fiters}
       />
 
       <TaskPagination

@@ -27,8 +27,6 @@ function ButtonModal({ modalVar, setModal, addTask }) {
   const [isErrorOccured, setIsErrorOccured] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  console.log(inputTaskTitleValue);
-
   useEffect(() => {
     if (!isErrorOccured) return;
 
@@ -66,7 +64,7 @@ function ButtonModal({ modalVar, setModal, addTask }) {
       taskDescription: descriptionValue.current.value,
       priorityType:
         radioButtonValue === "" ? null : radioButtonValue.toUpperCase(),
-      taskCompleted: false,
+      taskStatus: "ACTIVE",
       taskDueDate: dateSelected,
     };
 
@@ -93,8 +91,6 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     addTask((tasks) => [...tasks, returnedData]);
     setModal((isActive) => !isActive);
     setInputTaskTitleValue("");
-
-    console.log(returnedData);
   }
 
   // Changes the radio button value
@@ -170,7 +166,7 @@ function ButtonModal({ modalVar, setModal, addTask }) {
                     checked={radioButtonValue === "low"}
                     onChange={handleRadioButtonChange}
                   />
-                  <span>Low Priotity</span>
+                  <span>Low</span>
                 </div>
 
                 <div className="middle-priority checkbox-div">
@@ -181,7 +177,7 @@ function ButtonModal({ modalVar, setModal, addTask }) {
                     checked={radioButtonValue === "medium"}
                     onChange={handleRadioButtonChange}
                   />
-                  <span>Medium Priority</span>
+                  <span>Medium</span>
                 </div>
 
                 <div className="high-priority checkbox-div">
@@ -192,7 +188,7 @@ function ButtonModal({ modalVar, setModal, addTask }) {
                     checked={radioButtonValue === "high"}
                     onChange={handleRadioButtonChange}
                   />
-                  <span>High Priority</span>
+                  <span>High</span>
                 </div>
               </div>
             </div>
