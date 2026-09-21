@@ -5,19 +5,38 @@
  * @param {number} currentPage, A number indicating which page the user is on
  * @returns {React.ReactElement}
  */
-function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
-  // How much tasks are allowed on a page. (Does not actually represent how much tasks show on a page, that is on a different component)
-  const amountPerPageTask = 5;
-  const getAmountPages = Math.ceil(getAmountOfPages());
+function TaskPagination({
+  setCurrentPage,
+  currentPage,
+  setTasksModify,
+  sizeOfTotalTasks,
+  sizeOfEachPage,
+  searchFilter,
+}) {
   const pages = []; // Array that will hold divs representing the pages
   const numberOfVisiblePageination = 4;
+  const getAmountPages = Math.ceil(sizeOfTotalTasks / sizeOfEachPage);
+
+  async function getContentFromPage(pageNum) {
+    const searchParams = new URLSearchParams({
+      search: searchFilter,
+      pageNum: pageNum - 1,
+    });
+
+    const response = await fetch(
+      `http://localhost:8080/api/tasks?${searchParams}`,
+    );
+
+    if (!response.ok) {
+      throw Error("Something went wrong");
+    }
+
+    const data = await response.json();
+
+    setTasksModify(data.content);
+  }
 
   getPageAmount();
-
-  // Returns how much pages have the max amount of tasks
-  function getAmountOfPages() {
-    return taskObj.length / amountPerPageTask;
-  }
 
   function getPageAmount() {
     // If there is only one page that contains tasks. don't add any numbers at the bottom
@@ -33,6 +52,7 @@ function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
           className={currentPage === 1 ? "page-number clicked" : "page-number"}
           onClick={() => {
             setCurrentPage(1);
+            getContentFromPage(1);
           }}
         >
           1
@@ -51,6 +71,7 @@ function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
             }
             onClick={() => {
               setCurrentPage(i);
+              getContentFromPage(i);
             }}
           >
             {i}
@@ -72,6 +93,7 @@ function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
             }
             onClick={() => {
               setCurrentPage(i);
+              getContentFromPage(i);
             }}
           >
             {i}
@@ -98,7 +120,10 @@ function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
                 ? "page-number clicked"
                 : "page-number"
             }
-            onClick={() => setCurrentPage(getAmountPages)}
+            onClick={() => {
+              setCurrentPage(getAmountPages);
+              getContentFromPage(getAmountPages);
+            }}
           >
             {getAmountPages}
           </div>,
@@ -118,6 +143,7 @@ function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
             }
             onClick={() => {
               setCurrentPage(i);
+              getContentFromPage(i);
             }}
           >
             {i}
@@ -126,7 +152,7 @@ function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
       }
 
       // If there is more than 4 pages of tasks, include them in the array.
-      if (getAmountPages > numberOfVisiblePageination) {
+      if (getAmountPages > numberOfVisiblePageination + 1) {
         pages.push(
           <div className="page-ellipsis">...</div>,
           <div
@@ -137,6 +163,7 @@ function TaskPagination({ taskObj, setCurrentPage, currentPage }) {
             }
             onClick={() => {
               setCurrentPage(getAmountPages);
+              getContentFromPage(getAmountPages);
             }}
           >
             {getAmountPages}

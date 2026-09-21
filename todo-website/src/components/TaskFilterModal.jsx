@@ -5,20 +5,22 @@ import { DatePicker } from "rsuite";
 /**
  * This component is designed to be a modal for filtering for a task. Accepts two parameters.
  *
- * @param {boolean} modalVar A boolean that is used to see if the user has clicked a button to show the modal.
- * @param {Function} setModal A function to change the modalVar variable.
+ * @param {boolean} isTaskFilterModalVisible A boolean that is used to see if the user has clicked a button to show the modal.
+ * @param {Function} setIsTaskFilterModalVisible A function to change the isTaskFilterModalVisible variable.
  * @param {Function} setFilters A function to change the filters the user wants to apply for filtering out tasks
  * @param {Function} setPriorityValues A function to change the
  * @returns {React.ReactElement}
  */
 function TaskFilterModal({
-  modalVar,
-  setModal,
+  isTaskFilterModalVisible,
+  setIsTaskFilterModalVisible,
   setTaskModalFilters,
   filterValues,
+  setCurrentPage,
+  setTasksModify,
 }) {
-  // If the modalVar is false, don't open the modal or just return null
-  if (!modalVar) {
+  // If the isTaskFilterModalVisible is false, don't open the modal or just return null
+  if (!isTaskFilterModalVisible) {
     return null;
   }
 
@@ -43,7 +45,9 @@ function TaskFilterModal({
     };
 
     if (filterValues.dueDate !== null)
-      filteringObject.taskDueDate = filterValues.dueDate;
+      filteringObject.taskDueDate = filterValues.dueDate
+        .toISOString()
+        .split("T")[0];
 
     const filters = new URLSearchParams(filteringObject);
 
@@ -52,6 +56,9 @@ function TaskFilterModal({
     );
 
     const data = await response.json();
+
+    setCurrentPage(1);
+    setTasksModify(data.content);
   }
 
   // Using a createPortal to show this outside of the root div
@@ -68,9 +75,12 @@ function TaskFilterModal({
           </div>
         </div>
 
-        {/* A img to exit out of the modal using the setModal variable */}
+        {/* A img to exit out of the modal using the setIsTaskFilterModalVisible variable */}
         <div className="exit-modal-button">
-          <img src={close} onClick={() => setModal((p) => !p)} />
+          <img
+            src={close}
+            onClick={() => setIsTaskFilterModalVisible((p) => !p)}
+          />
         </div>
 
         {/* Div that contains all of the modal options */}

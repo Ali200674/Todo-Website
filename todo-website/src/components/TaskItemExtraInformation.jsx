@@ -4,16 +4,12 @@ import { DatePicker } from "rsuite";
  * A component that represents extra information about a task
  *
  * @param {object} taskObj A object that contains information about the user's task
- * @param {number} taskId The id of a task
+ * @param {boolean} isEditing A boolean that contains if the user if editing the task or not
+ * @param {Function} modifyExistingTask A function that modifies the existing task
  * @returns {React.ReactElement}
  */
 
-function TaskItemExtraInformation({
-  taskInfo,
-  taskId,
-  isEditing,
-  modifyExistingTask,
-}) {
+function TaskItemExtraInformation({ taskInfo, isEditing, modifyExistingTask }) {
   const selectedRadioButton = taskInfo.priorityType;
   const correctDueDate = new Date(taskInfo.taskDueDate);
   correctDueDate.setDate(correctDueDate.getDate() + 1);
@@ -50,7 +46,7 @@ function TaskItemExtraInformation({
                   <input
                     className={isEditing ? "not-editable" : "is-editable"}
                     type="radio"
-                    name={taskId}
+                    name={taskInfo.id}
                     value="low"
                     disabled={isEditing}
                     defaultChecked={selectedRadioButton === "LOW"}
@@ -63,7 +59,7 @@ function TaskItemExtraInformation({
                   <input
                     className={isEditing ? "not-editable" : "is-editable"}
                     type="radio"
-                    name={taskId}
+                    name={taskInfo.id}
                     value="medium"
                     disabled={isEditing}
                     defaultChecked={selectedRadioButton === "MEDIUM"}
@@ -76,7 +72,7 @@ function TaskItemExtraInformation({
                   <input
                     className={isEditing ? "not-editable" : "is-editable"}
                     type="radio"
-                    name={taskId}
+                    name={taskInfo.id}
                     value="high"
                     disabled={isEditing}
                     defaultChecked={selectedRadioButton === "HIGH"}
@@ -97,12 +93,20 @@ function TaskItemExtraInformation({
                     : "date-picker is-editable"
                 }
               >
-                <DatePicker
-                  format="MM/dd/yyyy"
-                  disabled={isEditing}
-                  defaultValue={correctDueDate}
-                  onChange={modifyExistingTask}
-                />
+                {!isEditing || taskInfo.taskDueDate === null ? (
+                  <div className="invalid-date">
+                    <p>No Due Date</p>
+                  </div>
+                ) : (
+                  <div>
+                    <DatePicker
+                      format="MM/dd/yyyy"
+                      disabled={isEditing}
+                      defaultValue={correctDueDate}
+                      onChange={modifyExistingTask}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>

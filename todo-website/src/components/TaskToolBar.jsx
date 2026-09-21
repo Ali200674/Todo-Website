@@ -1,58 +1,73 @@
-import { useState } from "react";
-
 import SearchBar from "./SearchBar";
 import CreateTaskModal from "./CreateTaskModal.jsx";
 import TaskFilterModal from "./TaskFilterModal.jsx";
 
+import { useState } from "react";
 /**
  * A component that represents the top tool bar that contains a search field and two buttons related to tasks.
  *
- * @param {Function} addTask A function that adds a new task to the array of objects from App.jsx
+ * @param {Function} setTasksModify A function that adds a new task to the array of objects from App.jsx
  * @param {Function} setSearchFilter A function that sets the search filter for the search bar from App.jsx
+ * @param {Function} setCurrentPage A function that sets the page
+ * @param {Function} setSizeOfTotalTasks A function that sets the size of the total tasks overall
  * @returns {React.ReactNode}
  */
-function TaskToolBar({ addTask, setSearchFilter }) {
-  // Two useStates. One for the filters button and the other for the create task button
-  const [showTaskFilterModal, setShowTaskFilterModal] = useState(false);
-  const [showButtonModal, setShowButtonModal] = useState(false);
+function TaskToolBar({
+  setTasksModify,
+  setSearchFilter,
+  setCurrentPage,
+  setSizeOfTotalTasks,
+  setSizeOfEachPage,
+}) {
+  // Two useStates. One for the filters modal and the other for the create task modal
+  const [isTaskFilterModalVisible, setIsTaskFilterModalVisible] =
+    useState(false);
+  const [isCreateTaskModalVisible, setIsCreateTaskModalVisible] =
+    useState(false);
 
+  // useState for remembering what kind of priority value(s) the user has clicked
   const [taskModalFilters, setTaskModalFilters] = useState({
     priority: [],
     status: [],
     dueDate: null,
-  }); // useState for remembering what kind of priority value(s) the user has clicked
+  });
 
   return (
     <div className="search-bar-div">
-      {/* Pass down the setSearchFilter to the SearchBar component */}
-      <SearchBar setSearchFilter={setSearchFilter} addTask={addTask} />
+      <SearchBar
+        setSearchFilter={setSearchFilter}
+        setTasksModify={setTasksModify}
+        setCurrentPage={setCurrentPage}
+        setSizeOfEachPage={setSizeOfEachPage}
+        setSizeOfTotalTasks={setSizeOfTotalTasks}
+      />
 
-      {/* Buttons near the input field */}
-      {/* Button to open the FiltersModal component */}
       <button
         className="filters-task"
-        onClick={() => setShowTaskFilterModal((p) => !p)}
+        onClick={() => setIsTaskFilterModalVisible((isActive) => !isActive)}
       >
         Filters
       </button>
       <TaskFilterModal
-        setModal={setShowTaskFilterModal}
-        modalVar={showTaskFilterModal}
+        setIsTaskFilterModalVisible={setIsTaskFilterModalVisible}
+        isTaskFilterModalVisible={isTaskFilterModalVisible}
         filterValues={taskModalFilters}
         setTaskModalFilters={setTaskModalFilters}
+        setCurrentPage={setCurrentPage}
+        setTasksModify={setTasksModify}
       />
 
-      {/* Button to open the AddTaskModal component */}
       <button
         className="create-task"
-        onClick={() => setShowButtonModal((p) => !p)}
+        onClick={() => setIsCreateTaskModalVisible((isActive) => !isActive)}
       >
         + Create Task
       </button>
       <CreateTaskModal
-        setModal={setShowButtonModal}
-        modalVar={showButtonModal}
-        addTask={addTask}
+        setModal={setIsCreateTaskModalVisible}
+        isCreateTaskModalVisible={isCreateTaskModalVisible}
+        setTasksModify={setTasksModify}
+        setSizeOfTotalTasks={setSizeOfTotalTasks}
       />
     </div>
   );

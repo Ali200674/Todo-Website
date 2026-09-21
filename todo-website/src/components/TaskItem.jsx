@@ -9,20 +9,32 @@ import checkmark from "../assets/checkmark.svg";
 /**
  * A component that represents a single task.
  *
- * @param {object} taskObj A object that contains information about the user's task
- * @param {Function} removeCurrentTask A function to remove a task
- * @param {number} taskId The id of a task
- * @param {Function} updateTaskCompleted A funciton to make a task complete
+ * @param {object} taskInfo A object that contains information about the user's task
+ * @param {Function} updateTaskCompleted A function that updates the status of a task
+ * @param {Function} setSizeOfTotalTasks A function that sets the size of the total tasks overall
+ * @param {Function} setCurrentPage A function that sets the page
+ * @param {Array} tasksInCurrentPage An array of objects that each object will contain information about a task
+ * @param {Function} setTasksModify A function that is used to modify the tasks stored in a array of objects
+ * @param {number} currentPage A number to tell which page the user is in
  * @returns {React.ReactElement}
  */
 function TaskItem({
   taskInfo,
   removeCurrentTask,
-  taskId,
   updateTaskCompleted,
+  setSizeOfTotalTasks,
+  setCurrentPage,
+  tasksInCurrentPage,
+  setTasksModify,
+  currentPage,
 }) {
+  // useState for if the user clicks on the arrow to look at the extra information
   const [isClicked, setIsClicked] = useState(false);
+
+  // useState for if the user is editing the task
   const [isEditing, setIsEditing] = useState(false);
+
+  // useState for modifiying the task
   const [modifiedTask, setModifiedTask] = useState({
     taskName: taskInfo.taskName,
     taskDescription: taskInfo.taskDescription,
@@ -30,7 +42,9 @@ function TaskItem({
     taskDueDate: taskInfo.taskDueDate,
   });
 
+  // Method to modify existing task
   function modifyExistingTask(event) {
+    // If user is modifying the date
     if (event instanceof Date) {
       setModifiedTask((prevTask) => ({
         ...prevTask,
@@ -41,12 +55,14 @@ function TaskItem({
 
     const { name, value } = event.target;
 
-    if (Number(name) === taskId) {
+    // If we are modifying the check box (priorities)
+    if (Number(name) === taskInfo.id) {
       setModifiedTask((prevData) => ({
         ...prevData,
         priorityType: value.toUpperCase(),
       }));
     } else {
+      // Else, modify the other values
       setModifiedTask((prevData) => ({
         ...prevData,
         [name]: value,
@@ -54,29 +70,61 @@ function TaskItem({
     }
   }
 
-  async function removeTask() {
-    const response = await fetch(`http://localhost:8080/api/task/${taskId}`, {
-      method: "DELETE",
-    });
+  // Method to refresh the page
+  async function getContentFromPage(pageNum) {
+    const response = await fetch(
+      `http://localhost:8080/api/tasks?pageNum=${pageNum - 1}`,
+    );
 
     if (!response.ok) {
-      throw new Error("Issue adding task to backend.");
+      throw Error("Something went wrong");
     }
 
-    removeCurrentTask(taskId);
+    const data = await response.json();
+
+    setTasksModify(data.content);
+  }
+
+  // Method to remove task
+  async function removeTask() {
+    const response = await fetch(
+      `http://localhost:8080/api/task/${taskInfo.id}`,
+      {
+        method: "DELETE",
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error("Issue removing task to backend.");
+    }
+
+    // Remove task from object and set size of total task
+    setSizeOfTotalTasks((task) => task - 1);
+    getContentFromPage(currentPage);
+
+    if (tasksInCurrentPage.length - 1 === 0 && currentPage !== 1) {
+      setCurrentPage((currentPage) => {
+        getContentFromPage(currentPage - 1);
+
+        return currentPage - 1 >= 0 ? currentPage - 1 : currentPage;
+      });
+    }
   }
 
   async function setTaskAsCompleted() {
     const competedStatus =
       taskInfo.taskStatus === "ACTIVE" ? "COMPLETED" : "ACTIVE";
 
-    const response = await fetch(`http://localhost:8080/api/task/${taskId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `http://localhost:8080/api/task/${taskInfo.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(competedStatus),
       },
-      body: JSON.stringify(competedStatus),
-    });
+    );
 
     if (!response.ok) {
       throw new Error("PATCH method went wrong.");
@@ -88,13 +136,16 @@ function TaskItem({
   async function updateWholeTask() {
     setIsEditing((value) => !value);
 
-    const response = await fetch(`http://localhost:8080/api/task/${taskId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `http://localhost:8080/api/task/${taskInfo.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(modifiedTask),
       },
-      body: JSON.stringify(modifiedTask),
-    });
+    );
 
     if (!response.ok) {
       throw new Error("PATCH method went wrong.");
@@ -111,7 +162,7 @@ function TaskItem({
             <input
               type="checkbox"
               onChange={setTaskAsCompleted}
-              checked={taskInfo.taskStatus === "ACTIVE"}
+              checked={taskInfo.taskStatus === "COMPLETED"}
             />
           </div>
 
@@ -120,7 +171,7 @@ function TaskItem({
             <input
               type="text"
               name="taskName"
-              className={`${taskInfo.taskStatus === "COMPLETED" ? "" : "cross-out-text"} ${!isEditing ? "not-editable" : "is-editable"}`}
+              className={`${taskInfo.taskStatus === "COMPLETED" ? "cross-out-text" : ""} ${!isEditing ? "not-editable" : "is-editable"}`}
               defaultValue={taskInfo.taskName}
               disabled={!isEditing}
               onChange={modifyExistingTask}
@@ -157,7 +208,6 @@ function TaskItem({
         </div>
       </div>
       <TaskItemExtraInformation
-        taskId={taskId}
         taskInfo={taskInfo}
         isEditing={!isEditing}
         modifyExistingTask={modifyExistingTask}

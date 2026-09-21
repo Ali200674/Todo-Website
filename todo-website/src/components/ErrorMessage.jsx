@@ -1,4 +1,12 @@
-function ErrorMessage({ isErrorOccured, errorMessage, setIsErrorOccured }) {
+/**
+ * A component that represents an error message
+ *
+ * @param {boolean} isErrorOccured A boolean that contains if an error has occured
+ * @param {string} errorMessage A message of the error.
+ * @returns {React.ReactElement}
+ */
+
+function ErrorMessage({ isErrorOccured, errorMessage }) {
   return (
     <div
       className={

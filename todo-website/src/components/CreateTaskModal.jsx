@@ -8,18 +8,24 @@ import { useEffect } from "react";
 /**
  * This component is designed to be a modal for creating a task. Accepts two parameters.
  *
- * modalVar is a boolean and is for if the user clicks
+ * isCreateTaskModalVisible is a boolean and is for if the user clicks
  * the button to open the modal.
  *
- * setModal is to change the modalVar for when the user clicks the X on the top right of the modal
+ * setModal is to change the isCreateTaskModalVisible for when the user clicks the X on the top right of the modal
  *
  *
- * @param {boolean} modalVar A boolean that is used to see if the user has clicked a button to show the modal.
- * @param {Function} setModal A function to change the modalVar variable.
- * @param {Function} addTask A function that adds a new task to the array of objects from App.jsx
+ * @param {boolean} isCreateTaskModalVisible A boolean that is used to see if the user has clicked a button to show the modal.
+ * @param {Function} setModal A function to change the isCreateTaskModalVisible variable.
+ * @param {Function} setTasksModify A function that adds a new task to the array of objects from App.jsx
+ * @param {Function}
  * @returns {React.ReactElement}
  */
-function ButtonModal({ modalVar, setModal, addTask }) {
+function CreateTaskModal({
+  isCreateTaskModalVisible,
+  setModal,
+  setTasksModify,
+  setSizeOfTotalTasks,
+}) {
   const [inputTaskTitleValue, setInputTaskTitleValue] = useState("");
   const descriptionValue = useRef(null);
   const [dateSelected, setSelectedDate] = useState("");
@@ -39,14 +45,14 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     return () => clearInterval(popUp);
   }, [isErrorOccured]);
 
-  // If the modalVar is false, don't open the modal or just return null
-  if (!modalVar) {
+  // If the isCreateTaskModalVisible is false, don't open the modal or just return null
+  if (!isCreateTaskModalVisible) {
     return null;
   }
 
   /*
     A function to create a new task when the user clicks on "Add Task"
-    It uses the addTask function that is passed down from App.jsx.
+    It uses the setTasksModify function that is passed down from App.jsx.
     It also closes the modal.
   */
   async function createNewTask(event) {
@@ -78,9 +84,9 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     });
 
     if (!response.ok) {
-      const errorMessage = await response.json();
+      const errorMessage = await response.text();
 
-      setErrorMessage(errorMessage.errorMessage);
+      setErrorMessage(errorMessage);
       setIsErrorOccured(!isErrorOccured);
       return;
     }
@@ -88,9 +94,17 @@ function ButtonModal({ modalVar, setModal, addTask }) {
     returnedData = await response.json();
 
     // Add the task and close out the modal.
-    addTask((tasks) => [...tasks, returnedData]);
+    setTasksModify((tasks) => {
+      if (tasks.length < 4) {
+        return [...tasks, returnedData];
+      }
+
+      return tasks;
+    });
     setModal((isActive) => !isActive);
     setInputTaskTitleValue("");
+    setSelectedDate("");
+    setSizeOfTotalTasks((task) => task + 1);
   }
 
   // Changes the radio button value
@@ -221,4 +235,4 @@ function ButtonModal({ modalVar, setModal, addTask }) {
   );
 }
 
-export default ButtonModal;
+export default CreateTaskModal;

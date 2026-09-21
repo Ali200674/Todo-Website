@@ -1,20 +1,33 @@
-import { useRef } from "react";
-
 import searchlogo from "../assets/search-bar-logo.svg";
+
+import { useRef } from "react";
 
 /**
  * This component is designed to be a search bar or filter for the user's tasks.
  *
  * @param {Function} setSearchFilter A function that sets the search filter.
+ * @param {Function} setTasksModify A function to add tasks
+ * @param {Function} setCurrentPage
+ * @param {Function} setSizeOfTotalTasks
+ * @param {Function} set
  * @returns {React.ReactElement} A component to represent a search bar.
  */
-function SearchBar({ setSearchFilter, addTask }) {
+function SearchBar({
+  setSearchFilter,
+  setTasksModify,
+  setCurrentPage,
+  setSizeOfTotalTasks,
+  setSizeOfEachPage,
+}) {
+  // useRef for the users input
   const userInput = useRef(null);
 
+  // Method to change the search filter of user
   function setTaskFilter() {
     setSearchFilter(userInput.current.value);
   }
 
+  // Method to get all tasks based on search filter
   async function getAllTasksBasedOnSearch(event) {
     event.preventDefault();
 
@@ -29,7 +42,11 @@ function SearchBar({ setSearchFilter, addTask }) {
 
     const data = await response.json();
 
-    addTask(data);
+    // Add all tasks and set the page back to one
+    setTasksModify(data.content);
+    setSizeOfTotalTasks(data.totalElements);
+    setSizeOfEachPage(data.size);
+    setCurrentPage(1);
   }
 
   return (
