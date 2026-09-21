@@ -917,7 +917,7 @@ input[type="checkbox"] {
 
     overflow-x: hidden;
 
-    width: 60%;
+    min-width: 50%;
   }
 
   .priority-main-div {
@@ -1245,6 +1245,11 @@ input[type="checkbox"] {
     margin-top: 40px;
   }
 
-  .filter-options-div .date-picker {
+  .task-item-div {
+    overflow-x: scroll;
+  }
+
+  .top-section {
+    gap: 30px;
   }
 }

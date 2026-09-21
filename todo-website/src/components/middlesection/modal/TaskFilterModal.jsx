@@ -160,7 +160,7 @@ function TaskFilterModal({
             </div>
             <div className="date-picker">
               <p className="extra-info">
-                Lave this blank to filter for no due take tasks
+                Leave this blank to filter for no due date tasks
               </p>
               <DatePicker
                 format="MM/dd/yyyy"
