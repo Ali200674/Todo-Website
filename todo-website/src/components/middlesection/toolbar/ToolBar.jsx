@@ -1,6 +1,6 @@
-import SearchBar from "./SearchBar";
-import CreateTaskModal from "./CreateTaskModal.jsx";
-import TaskFilterModal from "./TaskFilterModal.jsx";
+import SearchBar from "./SearchBar.jsx";
+import CreateTaskModal from "../modal/CreateTaskModal.jsx";
+import TaskFilterModal from "../modal/TaskFilterModal.jsx";
 
 import { useState } from "react";
 /**
@@ -12,7 +12,7 @@ import { useState } from "react";
  * @param {Function} setSizeOfTotalTasks A function that sets the size of the total tasks overall
  * @returns {React.ReactNode}
  */
-function TaskToolBar({
+function ToolBar({
   setTasksModify,
   setSearchFilter,
   setCurrentPage,
@@ -73,4 +73,4 @@ function TaskToolBar({
   );
 }
 
-export default TaskToolBar;
+export default ToolBar;

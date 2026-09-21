@@ -1,13 +1,9 @@
-import Header from "./Header";
-
-import TaskList from "./TaskList";
-
-import TaskToolBar from "./TaskToolBar";
-
-import TaskPagination from "./TaskPagination";
+import Header from "./topsection/Header";
+import TaskList from "./middlesection/task/TaskList";
+import ToolBar from "./middlesection/toolbar/ToolBar";
+import Pagination from "./bottomsection/Pagination";
 
 import "../styles/main.css";
-
 import "rsuite/dist/rsuite-no-reset.min.css";
 
 import { useState, useEffect } from "react";
@@ -47,7 +43,7 @@ function App() {
       {/* For the header */}
       <Header />
 
-      <TaskToolBar
+      <ToolBar
         setTasksModify={setTasksModify}
         setSearchFilter={setSearchFilter}
         setCurrentPage={setCurrentPage}
@@ -63,7 +59,7 @@ function App() {
         setCurrentPage={setCurrentPage}
       />
 
-      <TaskPagination
+      <Pagination
         taskObj={tasks}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}

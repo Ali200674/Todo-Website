@@ -1,6 +1,7 @@
-import { createPortal } from "react-dom";
-import close from "../assets/close.svg";
+import close from "../../../assets/close.svg";
+
 import { DatePicker } from "rsuite";
+import { createPortal } from "react-dom";
 
 /**
  * This component is designed to be a modal for filtering for a task. Accepts two parameters.
@@ -158,6 +159,9 @@ function TaskFilterModal({
               <h3>Due-Date</h3>
             </div>
             <div className="date-picker">
+              <p className="extra-info">
+                Lave this blank to filter for no due take tasks
+              </p>
               <DatePicker
                 format="MM/dd/yyyy"
                 onChange={(date) => {

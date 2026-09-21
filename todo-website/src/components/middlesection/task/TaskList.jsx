@@ -3,7 +3,7 @@ import TaskItem from "./TaskItem";
 /**
  * A component that represents the container of which tasks will be placed in.
  *
- * It will set below the TaskToolBar component.
+ * It will set below the ToolBar component.
  *
  * @param {Array} tasks An array of objects that each object will contain information about a task
  * @param {Function} setTasksModify A function that is used to modify the tasks stored in a array of objects

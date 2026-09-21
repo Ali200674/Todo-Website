@@ -1,10 +1,11 @@
 import TaskItemExtraInformation from "./TaskItemExtraInformation";
-import { useState } from "react";
 
-import trashcan from "../assets/trash_can.svg";
-import downarrow from "../assets/down-arrow.svg";
-import editpencil from "../assets/edit-pencil.svg";
-import checkmark from "../assets/checkmark.svg";
+import trashcan from "../../../assets/trash-can.svg";
+import downarrow from "../../../assets/down-arrow.svg";
+import editpencil from "../../../assets/edit-pencil.svg";
+import checkmark from "../../../assets/checkmark.svg";
+
+import { useState } from "react";
 
 /**
  * A component that represents a single task.

@@ -1,9 +1,9 @@
+import close from "../../../assets/close.svg";
+import ErrorMessage from "../modal/ErrorMessage.jsx";
+
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import close from "../assets/close.svg";
-import { useRef, useState } from "react";
 import { DatePicker } from "rsuite";
-import ErrorMessage from "./ErrorMessage";
-import { useEffect } from "react";
 
 /**
  * This component is designed to be a modal for creating a task. Accepts two parameters.
@@ -211,6 +211,9 @@ function CreateTaskModal({
                 <h3>Due-Date (*)</h3>
               </div>
               <div className="date-picker">
+                <p className="extra-info">
+                  Leaving this blank means no due date
+                </p>
                 <DatePicker
                   format="MM/dd/yyyy"
                   onChange={(date) => {

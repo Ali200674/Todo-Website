@@ -1,11 +1,13 @@
 /**
  *
+ * A component that represents the pages of tasks
+ *
  * @param {object} taskObj The object that holds all of the tasks.
  * @param {Function} setCurrentPage, A function that sets the current page the user is on
  * @param {number} currentPage, A number indicating which page the user is on
  * @returns {React.ReactElement}
  */
-function TaskPagination({
+function Pagination({
   setCurrentPage,
   currentPage,
   setTasksModify,
@@ -176,4 +178,4 @@ function TaskPagination({
   return <div className="pagination-div">{pages}</div>;
 }
 
-export default TaskPagination;
+export default Pagination;

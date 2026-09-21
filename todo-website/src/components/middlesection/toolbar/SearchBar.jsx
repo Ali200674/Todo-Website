@@ -1,4 +1,4 @@
-import searchlogo from "../assets/search-bar-logo.svg";
+import searchlogo from "../../../assets/search-bar-logo.svg";
 
 import { useRef } from "react";
 
