@@ -19,7 +19,4 @@ This repository contains the frontend
  - React
 
 # Backend
- - Java
- - Spring Boot
- - Spring Data
  - [Link To Repository](https://github.com/Ali200674/Todo-Website-Backend)
